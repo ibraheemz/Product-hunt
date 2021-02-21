@@ -6,18 +6,18 @@ const ProductList = () => {
         <div className="container-fluid w-50 main-div">
             <h1 className="main-div ml-0">{d}</h1>
             <div className="container-sm bg-dark rounded">
-                <h1>
+                <div className="product">
                     <Product n="1" />
-                </h1>
-                <h1>
+                </div>
+                <div className="product">
                     <Product n="2" />
-                </h1>
-                <h1>
+                </div>
+                <div className="product">
                     <Product n="3" />
-                </h1>
-                <h1>
+                </div>
+                <div className="product">
                     <Product n="4" />
-                </h1>
+                </div>
             </div>
         </div>
     )
