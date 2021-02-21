@@ -1,10 +1,11 @@
 import Header from './Header'
+import ProductList from './ProductList'
 
 const App = () => {
     return (
         <div className="App">
             <Header />
-            <div className="App-side-container">dooom</div>
+            <ProductList />
         </div>
     )
 }

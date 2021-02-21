@@ -1,0 +1,21 @@
+.main-div {
+    margin-left: 20vw;
+    margin-top: 15vh;
+}
+/*just a reminder that i need a media query for max-width 992 for the nav bar "nav bar <a>'s dosen't appear under 992"*/
+@media only screen and (max-width: 992px) {
+    body {
+        background-color: lightblue;
+        width: device-width;
+    }
+}
+.login-image {
+    display: block;
+    margin: auto;
+    width: 100px;
+    margin-top: 15px;
+}
+.login-footer {
+    font-size: small;
+    color: gray;
+}

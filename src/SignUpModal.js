@@ -14,6 +14,7 @@ function LoginModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <h1>SIGN UP here</h1>
                 <h4>Centered Modal</h4>
                 <p>
                     Cras mattis consectetur purus sit amet fermentum. Cras justo
