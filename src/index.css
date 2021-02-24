@@ -1,6 +1,6 @@
 .main-div {
-    margin-left: 20vw;
-    margin-top: 15vh;
+    margin-left: 13vw;
+    margin-top: 10vh;
 }
 /*just a reminder that i need a media query for max-width 992 for the nav bar "nav bar <a>'s dosen't appear under 992"*/
 @media only screen and (max-width: 992px) {
@@ -20,5 +20,24 @@
     color: gray;
 }
 .product {
-    background-color: green;
+    background-color: white;
+    border: 1px solid rgb(218, 215, 215);
+}
+.product-image {
+    width: 80px;
+    height: 80px;
+    margin-top: 19%;
+}
+.product-image-wrapper {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+}
+.product-info {
+    display: grid;
+    grid-template-columns: 1fr 4fr 0.7fr;
+}
+.product-description {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
