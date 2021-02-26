@@ -3,7 +3,7 @@ import ProductList from './ProductList'
 
 const App = () => {
     return (
-        <div className="App">
+        <div className="App bg-light">
             <Header />
             <ProductList />
         </div>

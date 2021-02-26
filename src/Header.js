@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ThreeDots } from 'react-bootstrap-icons'
+import { ThreeDots, Search } from 'react-bootstrap-icons'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
     const [showSignUp, setShowSignUp] = useState(false)
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
                 <div className="container-sm">
                     <img
                         className="navbar-brand"
@@ -17,6 +17,15 @@ const Header = () => {
                         width="50"
                         height="54"
                     ></img>
+
+                    <form className="d-flex  input-group-sm col-4">
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="Discover your new favorite thing..."
+                            aria-label="Search"
+                        ></input>
+                    </form>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -59,7 +68,7 @@ const Header = () => {
                             </li>
                             <div className="dropdown">
                                 <button
-                                    className="btn btn-light dropdown-toggle"
+                                    className="btn btn-white"
                                     type="button"
                                     id="dropdownMenuButton"
                                     data-toggle="dropdown"
@@ -84,30 +93,17 @@ const Header = () => {
                                 </div>
                             </div>
                         </ul>
-                        <form className="d-flex">
-                            <input
-                                className="form-control me-2"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                            ></input>
-                            <button
-                                className="btn btn-outline-success"
-                                type="submit"
-                            >
-                                Search
-                            </button>
-                        </form>
                     </div>
+
                     <div className="login-form">
                         <button
-                            className="btn btn-outline-secondary m-2"
+                            className="btn btn-outline-secondary m-2 btn-sm"
                             onClick={() => setShowLogin(true)}
                         >
                             LOG IN
                         </button>
                         <button
-                            className="btn btn-danger m-2"
+                            className="btn btn-danger m-2 btn-sm"
                             onClick={() => setShowSignUp(true)}
                         >
                             SIGN UP

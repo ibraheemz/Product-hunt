@@ -1,6 +1,9 @@
+.App {
+    height: 100vh;
+}
 .main-div {
-    margin-left: 13vw;
-    margin-top: 10vh;
+    margin-left: 14vw;
+    margin-top: 8vh;
 }
 /*just a reminder that i need a media query for max-width 992 for the nav bar "nav bar <a>'s dosen't appear under 992"*/
 @media only screen and (max-width: 992px) {
@@ -21,23 +24,56 @@
 }
 .product {
     background-color: white;
-    border: 1px solid rgb(218, 215, 215);
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 .product-image {
     width: 80px;
     height: 80px;
-    margin-top: 19%;
+    margin-top: 25%;
 }
 .product-image-wrapper {
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
+    height: 8em;
 }
 .product-info {
     display: grid;
-    grid-template-columns: 1fr 4fr 0.7fr;
+    grid-template-columns: 0.7fr 4fr 0.7fr;
+    height: 8em;
+    padding-left: 0.8em;
 }
-.product-description {
-    margin-top: 15px;
-    margin-bottom: 15px;
+
+.vote-button {
+    border: 1px solid rgb(230, 230, 230);
+    width: 64px;
+    height: 74px;
+    align-self: center;
+}
+.time-span {
+    font-size: 1.5em;
+    font-weight: 550;
+    margin-bottom: 10px;
+}
+
+.product-descreption {
+    font-size: 0.9em;
+    color: gray;
+}
+.product-name {
+    font-weight: 600;
+    margin-top: 1.3em;
+}
+.comment-button {
+    border: 1px solid rgb(230, 230, 230);
+    font-size: 0.7em;
+    font-weight: 700;
+    color: gray;
+}
+.category-link {
+    color: gray;
+    font-size: 0.8em;
+    margin-left: 1em;
+}
+.product-footer {
 }

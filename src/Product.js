@@ -5,7 +5,7 @@ const Product = (props) => {
     const alt = `Product ${props.id}`
     return (
         <div>
-            <div className="product-info">
+            <div className="product-info rounded">
                 <div className="product-image-wrapper">
                     <img
                         className="product-image"
@@ -14,19 +14,23 @@ const Product = (props) => {
                     ></img>
                 </div>
                 <div className="product-description">
-                    <h2>{props.ProductName}</h2>
-                    <p>{props.ProductDescription}</p>
-                    <button className="btn btn-light comment-button">
-                        <Chat />
-                        {props.CommentsNum}
-                    </button>
-                    <a className="category-link" href={props.CategoryLink}>
-                        {props.ProductCategory}
-                    </a>
+                    <h6 className="product-name">{props.ProductName}</h6>
+                    <p className="product-descreption">
+                        {props.ProductDescription}
+                    </p>
+                    <div className="product-footer">
+                        <button className="btn btn-white btn-sm comment-button">
+                            <Chat />
+                            {props.CommentsNum}
+                        </button>
+                        <a className="category-link" href={props.CategoryLink}>
+                            {props.ProductCategory}
+                        </a>
+                    </div>
                 </div>
                 <button
                     id="vote-button"
-                    className="btn btn-light vote-button"
+                    className="btn btn-white vote-button"
                     onClick={() => {
                         setProductVotes(productVotes + 1)
                     }}
