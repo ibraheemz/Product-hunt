@@ -2,16 +2,23 @@
     height: 100vh;
 }
 .main-div {
+    margin-top: 3em;
+}
+.main-div-margin {
     margin-left: 14vw;
-    margin-top: 8vh;
 }
-/*just a reminder that i need a media query for max-width 992 for the nav bar "nav bar <a>'s dosen't appear under 992"*/
-@media only screen and (max-width: 992px) {
-    body {
-        background-color: lightblue;
-        width: device-width;
-    }
+.content {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: 1em;
 }
+.left-container-sizing {
+    grid-column: span 5;
+}
+.right-container-sizing {
+    grid-column: span 3;
+}
+
 .login-image {
     display: block;
     margin: auto;
@@ -22,44 +29,53 @@
     font-size: small;
     color: gray;
 }
+.time-span {
+    font-size: 1.3em;
+    font-weight: 550;
+    margin-bottom: 10px;
+}
 .product {
     background-color: white;
     border-bottom: 1px solid rgb(230, 230, 230);
 }
+.product-info {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 1em;
+}
+.product-info:hover {
+    cursor: pointer;
+    background-color: rgb(243, 248, 250);
+}
+.product-image-wrapper {
+    grid-column: span 1;
+}
 .product-image {
     width: 80px;
     height: 80px;
-    margin-top: 25%;
+    margin-top: 20px;
+    margin-left: 18px;
 }
-.product-image-wrapper {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    height: 8em;
+.product-description {
+    grid-column: span 5;
+    margin-bottom: 4%;
 }
-.product-info {
-    display: grid;
-    grid-template-columns: 0.7fr 4fr 0.7fr;
-    height: 8em;
-    padding-left: 0.8em;
-}
-
-.vote-button {
-    border: 1px solid rgb(230, 230, 230);
-    width: 64px;
-    height: 74px;
-    align-self: center;
-}
-.time-span {
-    font-size: 1.5em;
-    font-weight: 550;
-    margin-bottom: 10px;
-}
-
-.product-descreption {
+.product-breef {
     font-size: 0.9em;
     color: gray;
 }
+.vote-button-warrper {
+    grid-column: span 1;
+}
+.vote-button {
+    border: 1px solid rgb(230, 230, 230);
+    width: 65px;
+    height: 80px;
+    margin-top: 15%;
+    margin-right: 1em;
+    float: right;
+}
+
 .product-name {
     font-weight: 600;
     margin-top: 1.3em;
@@ -75,5 +91,59 @@
     font-size: 0.8em;
     margin-left: 1em;
 }
-.product-footer {
+
+.side-main-div {
+    float: right;
+    margin-right: 15em;
+    margin-top: 3.5em;
+}
+.div-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    min-width: 1px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.side-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: white;
+}
+.side-product-breef {
+    grid-column: span 3;
+    background-color: black;
+}
+.side-product-image {
+    grid-column: span 1;
+    background-color: blue;
+}
+.test1 {
+    width: 20em;
+    height: 30em;
+}
+@media only screen and (max-width: 1200px) {
+    .side-main-div {
+        display: none;
+    }
+    .main-div-margin {
+        margin: 3em;
+    }
+    .left-container-sizing {
+        grid-column: span 8;
+    }
+}
+/* product modal */
+
+.modal-wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+.modal-product-header {
+    grid-column: span 6;
+}
+.modal-side-div {
+    grid-column: span 2;
 }
