@@ -6,6 +6,8 @@ const Product = (props) => {
     const [productVotes, setProductVotes] = useState(props.ProductVotes)
     const [showProduct, setShowProduct] = useState(false)
     const alt = `Product ${props.id}`
+    const a = ['a', 'b', 'c']
+    const [array, setArray] = useState(a)
     return (
         <div>
             <div

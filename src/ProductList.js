@@ -21,6 +21,7 @@ const ProductList = () => {
                             ProductCategory={product.ProductCategory}
                             CategoryLink={product.CategoryLink}
                             id={product.id}
+                            ProductPhotos={product.ProductPhotos}
                         />
                     </div>
                 ))}

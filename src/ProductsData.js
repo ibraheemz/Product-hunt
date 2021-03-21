@@ -3,7 +3,7 @@ import ShazamLogo from './shazam.png'
 import SupermanLogo from './Superman.png'
 const ProductsData = [
     {
-        ProductImg: { BatmanLogo },
+        ProductImg: BatmanLogo,
         ProductName: 'WhatsApp Actions for HubSpot',
         ProductDescription: 'send WhatsApp messages from HubSpot workflow',
         ProductVotes: 213,
@@ -11,9 +11,14 @@ const ProductsData = [
         ProductCategory: 'Productivity',
         CategoryLink: '#',
         id: 1,
+        ProductPhotos: [
+            'http://placecorgi.com/1000/1000',
+            'http://placecorgi.com/900/900',
+            'http://placecorgi.com/800/800',
+        ],
     },
     {
-        ProductImg: { ShazamLogo },
+        ProductImg: ShazamLogo,
         ProductName: 'Sensity',
         ProductDescription: 'The deepfake detection platform',
         ProductVotes: 32,
@@ -21,9 +26,14 @@ const ProductsData = [
         ProductCategory: 'Developer Tool',
         CategoryLink: '#',
         id: 2,
+        ProductPhotos: [
+            'http://placecorgi.com/900/900',
+            'http://placecorgi.com/900/900',
+            'http://placecorgi.com/900/900',
+        ],
     },
     {
-        ProductImg: { SupermanLogo },
+        ProductImg: SupermanLogo,
         ProductName: 'Technically True Podcast',
         ProductDescription:
             'A podcast on developer relations and public speaking',
@@ -32,6 +42,11 @@ const ProductsData = [
         ProductCategory: 'Marketing',
         CategoryLink: '#',
         id: 3,
+        ProductPhotos: [
+            'http://placecorgi.com/800/800',
+            'http://placecorgi.com/800/800',
+            'http://placecorgi.com/800/800',
+        ],
     },
 ]
 export default ProductsData
