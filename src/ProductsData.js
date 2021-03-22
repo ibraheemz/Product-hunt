@@ -27,9 +27,9 @@ const ProductsData = [
         CategoryLink: '#',
         id: 2,
         ProductPhotos: [
+            'http://placecorgi.com/1000/1000',
             'http://placecorgi.com/900/900',
-            'http://placecorgi.com/900/900',
-            'http://placecorgi.com/900/900',
+            'http://placecorgi.com/800/800',
         ],
     },
     {
@@ -43,8 +43,8 @@ const ProductsData = [
         CategoryLink: '#',
         id: 3,
         ProductPhotos: [
-            'http://placecorgi.com/800/800',
-            'http://placecorgi.com/800/800',
+            'http://placecorgi.com/1000/1000',
+            'http://placecorgi.com/900/900',
             'http://placecorgi.com/800/800',
         ],
     },

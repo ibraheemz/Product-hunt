@@ -13,7 +13,7 @@ const ProductList = () => {
                 {ProductsData.map((product) => (
                     <div className="product">
                         <Product
-                            ProductImg={logoSample}
+                            ProductImg={product.ProductImg}
                             ProductName={product.ProductName}
                             ProductDescription={product.ProductDescription}
                             ProductVotes={product.ProductVotes}
