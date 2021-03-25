@@ -2,11 +2,21 @@ import { useState } from 'react'
 import { ArrowUpCircleFill, Chat } from 'react-bootstrap-icons'
 import ProductModal from './ProductModal'
 import $ from 'jquery'
-const Product = (props) => {
-    const [productVotes, setProductVotes] = useState(props.ProductVotes)
+const Product = ({
+    ProductVotes,
+    id,
+    ProductImg,
+    ProductName,
+    ProductDescription,
+    CategoryLink,
+    ProductCategory,
+    CommentsNum,
+    ProductPhotos,
+}) => {
+    const [productVotes, setProductVotes] = useState(ProductVotes)
     const [showProduct, setShowProduct] = useState(false)
-    const alt = `Product ${props.id}`
-
+    const [voteButtonOff, setVoteButtonOff] = useState(true)
+    const alt = `Product ${id}`
     return (
         <div>
             <div
@@ -15,10 +25,10 @@ const Product = (props) => {
                     var elementType = $(e.target).prop('nodeName')
                     console.log(elementType)
                     if (
-                        elementType == 'BUTTON' ||
-                        elementType == 'svg' ||
-                        elementType == 'path' ||
-                        elementType == 'A'
+                        elementType === 'BUTTON' ||
+                        elementType === 'svg' ||
+                        elementType === 'path' ||
+                        elementType === 'A'
                     ) {
                         setShowProduct(false)
                     } else {
@@ -29,38 +39,49 @@ const Product = (props) => {
                 <div className="product-image-wrapper">
                     <img
                         className="product-image"
-                        src={props.ProductImg}
+                        src={ProductImg}
                         alt={alt}
                     ></img>
                 </div>
                 <div className="product-description">
-                    <h6 className="product-name">{props.ProductName}</h6>
-                    <p className="product-breef">{props.ProductDescription}</p>
+                    <h6 className="product-name">{ProductName}</h6>
+                    <p className="product-breef">{ProductDescription}</p>
                     <div className="product-footer">
                         <button className="btn btn-white btn-sm comment-button">
                             <Chat />
-                            {props.CommentsNum}
+                            {CommentsNum}
                         </button>
-                        <a className="category-link" href={props.CategoryLink}>
-                            {props.ProductCategory}
+                        <a className="category-link" href={CategoryLink}>
+                            {ProductCategory}
                         </a>
                     </div>
                 </div>
                 <div className="vote-button-warrper">
                     <button
                         id="vote-button"
-                        className="btn btn-white vote-button"
+                        className="btn btn-white vote-button row pt-3"
                         onClick={() => {
-                            setProductVotes(productVotes + 1)
+                            if (voteButtonOff) {
+                                setProductVotes(productVotes + 1)
+                                setVoteButtonOff(false)
+                            }
                         }}
                     >
                         <ArrowUpCircleFill />
-                        {productVotes}
+                        <p>{productVotes}</p>
                     </button>
                 </div>
             </div>
             <ProductModal
-                {...props}
+                ProductVotes={productVotes}
+                id={id}
+                ProductImg={ProductImg}
+                ProductName={ProductName}
+                ProductDescription={ProductDescription}
+                CategoryLink={CategoryLink}
+                ProductCategory={ProductCategory}
+                CommentsNum={CommentsNum}
+                ProductPhotos={ProductPhotos}
                 show={showProduct}
                 onHide={() => setShowProduct(false)}
             />

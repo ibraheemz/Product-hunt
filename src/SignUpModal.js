@@ -1,6 +1,5 @@
 import Modal from 'react-bootstrap/Modal'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import logo from './kitty.webp'
+import logo from './assests/images/kitty.webp'
 function LoginModal(props) {
     return (
         <Modal
@@ -9,7 +8,7 @@ function LoginModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Body className="text-center ml-4 mr-4">
+            <Modal.Body className="text-center ml-4 mr-4 d-flex justify-content-center row">
                 <img
                     className="login-image"
                     src={logo}

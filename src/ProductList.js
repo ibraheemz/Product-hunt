@@ -1,6 +1,5 @@
 import Product from './Product'
 import ProductsData from './ProductsData'
-import logoSample from './logoSample.webp'
 
 const ProductList = () => {
     const d = new Date().toString().split(' ').splice(1, 3).join(' ')

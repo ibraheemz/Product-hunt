@@ -20,7 +20,6 @@
 }
 
 .login-image {
-    display: block;
     margin: auto;
     width: 100px;
     margin-top: 15px;
@@ -268,4 +267,7 @@
     border: 1px solid #b74424;
     cursor: pointer;
     padding: 1em;
+}
+.Modal.not-active {
+    display: none;
 }
