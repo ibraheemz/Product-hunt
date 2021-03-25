@@ -1,5 +1,5 @@
-import Product from './Product'
-import ProductsData from './ProductsData'
+import Product from './index'
+import ProductsData from '../../assests/ProductsData'
 
 const ProductList = () => {
     const d = new Date().toString().split(' ').splice(1, 3).join(' ')

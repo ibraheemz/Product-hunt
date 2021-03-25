@@ -1,5 +1,6 @@
 import Modal from 'react-bootstrap/Modal'
-import logo from './assests/images/kitty.webp'
+import logo from '../../assests/images/kitty.webp'
+
 function LoginModal(props) {
     return (
         <Modal
@@ -13,7 +14,7 @@ function LoginModal(props) {
                     className="login-image"
                     src={logo}
                     alt="login kitty logo"
-                ></img>
+                />
                 <div className="mt-4">
                     <h1>SIGN UP here</h1>
                     <h4>Centered Modal</h4>

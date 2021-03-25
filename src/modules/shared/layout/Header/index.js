@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ThreeDots, Search } from 'react-bootstrap-icons'
-import LoginModal from './LoginModal'
-import SignUpModal from './SignUpModal'
+import LoginModal from '../../../login&signup/LoginModal'
+import SignUpModal from '../../../login&signup/SignUpModal'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
     const [showSignUp, setShowSignUp] = useState(false)

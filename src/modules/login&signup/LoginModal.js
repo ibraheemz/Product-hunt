@@ -1,5 +1,5 @@
 import Modal from 'react-bootstrap/Modal'
-import logo from './assests/images/kitty.webp'
+import logo from '../../assests/images/kitty.webp'
 function LoginModal(props) {
     return (
         <Modal
@@ -10,7 +10,7 @@ function LoginModal(props) {
         >
             <Modal.Body className="text-center ml-4 mr-4 d-flex justify-content-center row">
                 <img
-                    className="login-image "
+                    className="login-image"
                     src={logo}
                     alt="login kitty logo"
                 />

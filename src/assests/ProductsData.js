@@ -1,6 +1,6 @@
-import BatmanLogo from './assests/images/Batman.png'
-import ShazamLogo from './assests/images/shazam.png'
-import SupermanLogo from './assests/images/Superman.png'
+import BatmanLogo from './images/Batman.png'
+import ShazamLogo from './images/shazam.png'
+import SupermanLogo from './images/Superman.png'
 const ProductsData = [
     {
         ProductImg: BatmanLogo,

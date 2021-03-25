@@ -1,6 +1,6 @@
-import Header from './Header'
-import ProductList from './ProductList'
-import SideDive from './SideDiv'
+import Header from '../modules/shared/layout/Header/index'
+import ProductList from '../modules/product/ProductList.js'
+import SideDive from '../modules/shared/layout/SideDiv'
 
 const App = () => {
     return (
