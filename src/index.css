@@ -12,6 +12,16 @@
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 1em;
 }
+/*navbar*/
+.navbar-brand {
+    flex-basis: 5%;
+}
+.input-group-sm {
+    flex-basis: 100%;
+}
+.login-form {
+    flex-basis: 15%;
+}
 .left-container-sizing {
     grid-column: span 5;
 }
@@ -268,6 +278,95 @@
     cursor: pointer;
     padding: 1em;
 }
-.Modal.not-active {
-    display: none;
+/* @media only screen and (max-width: 768px) {
+    .nav-search {
+        width: 10px;
+
+    }
+} */
+
+/* .search-modal {
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border: 1px solid black;
+    z-index: 10;
+    background-color: white;
+    width: 95%;
 }
+#overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rbga(0, 0, 0, 0.5);
+    pointer-events: none;
+} */
+
+/* The overlay effect with black background */
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.9
+    ); /* Black with a little bit see-through */
+}
+
+/* The content */
+.overlay-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    top: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    margin: auto;
+}
+.overlay-search {
+    grid-column: span 9;
+}
+.search-icon-span {
+    grid-column: span 1;
+}
+/* Close button */
+.overlay .closebtn {
+    position: absolute;
+    top: 50px;
+    right: 45px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: rgb(189, 15, 15);
+}
+
+.overlay .closebtn:hover {
+    color: #ccc;
+}
+
+/* Style the search field */
+.overlay input[type='text'] {
+    padding: 15px;
+    font-size: 17px;
+    border: none;
+    float: left;
+    width: 100%;
+    background: white;
+}
+.overlay input[type='text']:hover {
+    background: #f1f1f1;
+}
+/* .overlay-search {
+    top: 0;
+} */

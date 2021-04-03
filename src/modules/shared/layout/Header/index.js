@@ -2,35 +2,55 @@ import { useState } from 'react'
 import { ThreeDots, Search } from 'react-bootstrap-icons'
 import LoginModal from '../../../login&signup/LoginModal'
 import SignUpModal from '../../../login&signup/SignUpModal'
+import SiteLogo from '../../../../assests/images/gaming-logo.png'
+import $ from 'jquery'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
     const [showSignUp, setShowSignUp] = useState(false)
+    console.log($(window).width())
+    // Open the full screen search box
+    function openSearch() {
+        document.getElementById('searchOverlay').style.display = 'block'
+    }
+
+    // Close the full screen search box
+    function closeSearch() {
+        document.getElementById('searchOverlay').style.display = 'none'
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
-                <div className="container-sm">
+                <div className="container">
                     <img
                         className="navbar-brand"
-                        src="https://placeit-assets1.s3-accelerate.amazonaws.com/custom-pages/make-a-gaming-logo/gaming-logo-maker-for-an-rpg-guild.png"
+                        src={SiteLogo}
                         href="/"
                         alt="app-logo"
                         width="50"
                         height="54"
                     ></img>
 
-                    <form className="d-flex  input-group-sm col-4">
-                        <input
-                            className="form-control me-2"
-                            type="search"
-                            placeholder="Discover your new favorite thing..."
-                            aria-label="Search"
-                        ></input>
+                    <form className="d-flex input-group-sm col-4">
+                        {$(window).width() <= 768 ? (
+                            <div onClick={() => openSearch()}>
+                                <Search />
+                            </div>
+                        ) : (
+                            <input
+                                className="form-control me-2 nav-search-sm"
+                                type="search"
+                                placeholder={
+                                    'Discover your new favorite thing...'
+                                }
+                                aria-label="Search"
+                            ></input>
+                        )}
                     </form>
                     <button
                         className="navbar-toggler"
                         type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
@@ -56,17 +76,17 @@ const Header = () => {
                                     Deals
                                 </a>
                             </li>
-                            <li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     Jobs
                                 </a>
                             </li>
-                            <li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     Ship
                                 </a>
                             </li>
-                            <div className="dropdown">
+                            <div className="nav-item dropdown">
                                 <button
                                     className="btn btn-white"
                                     type="button"
@@ -95,7 +115,7 @@ const Header = () => {
                         </ul>
                     </div>
 
-                    <div className="login-form">
+                    <div className="login-form d-flex align-items-center">
                         <button
                             className="btn btn-outline-secondary m-2 btn-sm"
                             onClick={() => setShowLogin(true)}
@@ -119,6 +139,28 @@ const Header = () => {
                     />
                 </div>
             </nav>
+            <div id="searchOverlay" className="overlay">
+                <span
+                    className="closebtn"
+                    onClick={() => closeSearch()}
+                    title="Close Overlay"
+                >
+                    x
+                </span>
+                <div className="overlay-content">
+                    <div className="search-icon-span">
+                        <span className="input-group-text" id="basic-addon1">
+                            <i className="bi bi-search"></i>
+                        </span>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Discover your new favorite thing..."
+                        name="search"
+                        className="overlay-search"
+                    ></input>
+                </div>
+            </div>
         </div>
     )
 }
