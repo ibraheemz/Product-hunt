@@ -8,9 +8,11 @@
     margin-left: 14vw;
 }
 .content {
+    margin-top: 3em;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 1em;
+    background-color: #f8f5f59f;
 }
 /*navbar*/
 .navbar-brand {
@@ -47,6 +49,10 @@
     background-color: white;
     border-bottom: 1px solid rgb(230, 230, 230);
 }
+#a0 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 .product-info {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -80,7 +86,7 @@
     border: 1px solid rgb(230, 230, 230);
     width: 65px;
     height: 80px;
-    margin-top: 15%;
+    margin-top: 20%;
     margin-right: 1em;
     float: right;
 }

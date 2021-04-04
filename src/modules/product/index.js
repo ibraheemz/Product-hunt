@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ArrowUpCircleFill, Chat } from 'react-bootstrap-icons'
 import ProductModal from './ProductModal'
 import $ from 'jquery'
-import axios from 'axios'
 
 const Product = ({
     ProductVotes,
@@ -19,27 +18,7 @@ const Product = ({
     const [showProduct, setShowProduct] = useState(false)
     const [voteButtonOff, setVoteButtonOff] = useState(true)
     const alt = `Product ${id}`
-    // fetching data from the API
-    useEffect(() => {
-        var config = {
-            method: 'Get',
-            url: 'https://api.producthunt.com/v1/posts',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ah7jK8UqHEpefPjplVqHJgMZx7rv0xQR4-BklgmenQU',
-                Cookie: '__cfduid=dc36e2032b2ecf7f6b90a155ffb7ceca31616974459',
-            },
-        }
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response))
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }, [])
+
     return (
         <div>
             <div

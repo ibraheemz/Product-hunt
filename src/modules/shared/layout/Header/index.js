@@ -19,7 +19,7 @@ const Header = () => {
     }
     return (
         <div>
-            <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
+            <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm fixed-top">
                 <div className="container">
                     <img
                         className="navbar-brand"
