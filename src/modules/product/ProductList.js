@@ -1,12 +1,15 @@
 import Product from './index'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-// import ProductsData from '../../assests/ProductsData'
+import React from 'react'
 
 const ProductList = () => {
-    const [data, setData] = useState([])
+    const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [currentPosts, setCurrentPosts] = useState([])
+    const [postId, setPostId] = useState('')
     const d = new Date().toString().split(' ').splice(1, 3).join(' ')
-    // fetching data from the API
+    // fetching posts from the API
     useEffect(() => {
         var config = {
             method: 'Get',
@@ -16,38 +19,59 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
                 Authorization:
                     'Bearer ah7jK8UqHEpefPjplVqHJgMZx7rv0xQR4-BklgmenQU',
-                Cookie: '__cfduid=dc36e2032b2ecf7f6b90a155ffb7ceca31616974459',
             },
         }
         axios(config)
             .then(function (response) {
-                setData(response.data.posts)
+                setPosts(response.data.posts)
             })
             .catch(function (error) {
                 console.log(error)
             })
-    }, [data])
+    }, [])
+    useEffect(() => {
+        setCurrentPosts(posts.splice(0, 12))
+        posts.length > 0 && setLoading(false)
+    }, [posts])
+
     return (
         <div className="container-fluid main-div">
             <div className="main-div-margin">
                 <div className="time-span">
                     <span className="main-div ml-0 ">{d}</span>
                 </div>
-                {data.map((item, id) => (
-                    <div className="product" id={'a' + id}>
-                        <Product
-                            ProductImg={item.thumbnail.image_url}
-                            ProductName={item.name}
-                            ProductDescription={item.tagline}
-                            ProductVotes={item.votes_count}
-                            CommentsNum={item.comments_count}
-                            ProductCategory={item.topics[0].name}
-                            //CategoryLink={product.CategoryLink}
-                            id={item.id}
-                            //ProductPhotos={product.ProductPhotos}
-                        />
+                {loading ? (
+                    <div className="d-flex justify-content-center">
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden"></span>
+                        </div>
                     </div>
-                ))}
+                ) : (
+                    <div>
+                        {currentPosts.map((item, index) => (
+                            <div
+                                className="today-product"
+                                id={'a' + index}
+                                key={index}
+                            >
+                                <Product
+                                    productimg={item.thumbnail.image_url}
+                                    productname={item.name}
+                                    productdescription={item.tagline}
+                                    productvotes={item.votes_count}
+                                    commentsnum={item.comments_count}
+                                    //productCategory={item.topics[0].name}
+                                    categorylink={item.discussion_url}
+                                    id={item.id}
+                                    //ProductPhotos={product.ProductPhotos} no photos for the carousel
+                                />
+                            </div>
+                        ))}
+                        <div className="container-footer d-flex justify-content-center bg-white">
+                            SHOW {posts.length - 12} MORE
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

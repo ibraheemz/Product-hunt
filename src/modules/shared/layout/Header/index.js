@@ -7,7 +7,6 @@ import $ from 'jquery'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
     const [showSignUp, setShowSignUp] = useState(false)
-    console.log($(window).width())
     // Open the full screen search box
     function openSearch() {
         document.getElementById('searchOverlay').style.display = 'block'

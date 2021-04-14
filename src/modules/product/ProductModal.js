@@ -2,30 +2,30 @@ import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Carousel from './Carousel'
 function ProductModal({
-    ProductVotes,
+    productvotes,
     id,
-    ProductImg,
-    ProductName,
-    ProductDescription,
-    CategoryLink,
-    ProductCategory,
-    CommentsNum,
-    ProductPhotos,
+    productimg,
+    productname,
+    productdescription,
+    categorylink,
+    productcategory,
+    commentsnum,
+    productphotos,
     show,
     onHide,
 }) {
     const alt = `Product ${id}`
     return (
         <Modal
-            ProductVotes={ProductVotes}
+            productvotes={productvotes}
             id={id}
-            ProductImg={ProductImg}
-            ProductName={ProductName}
-            ProductDescription={ProductDescription}
-            CategoryLink={CategoryLink}
-            ProductCategory={ProductCategory}
-            CommentsNum={CommentsNum}
-            ProductPhotos={ProductPhotos}
+            productimg={productimg}
+            productname={productname}
+            productdescription={productdescription}
+            categorylink={categorylink}
+            productcategory={productcategory}
+            commentsnum={commentsnum}
+            productphotos={productphotos}
             show={show}
             onHide={onHide}
             dialogClassName="modal-73w"
@@ -37,18 +37,18 @@ function ProductModal({
                     <div className="modal-img-wrapper">
                         <img
                             className="modal-product-image"
-                            src={ProductImg}
+                            src={productimg}
                             alt={alt}
                         ></img>
                     </div>
                     <div className="modal-product-descreption">
-                        <h6 className="modal-product-name">{ProductName}</h6>
+                        <h6 className="modal-product-name">{productname}</h6>
                         <p className="modal-product-breef">
-                            {ProductDescription}
+                            {productdescription}
                         </p>
                         <div className="modal-product-footer">
                             <button className="cat-button">
-                                {ProductCategory}
+                                {productcategory}
                             </button>
                         </div>
                     </div>
@@ -60,13 +60,13 @@ function ProductModal({
                 </div>
                 <div className="modal-body">
                     <div className="product-carousel">
-                        <Carousel ProductPhotos={ProductPhotos} />
+                        <Carousel productphotos={productphotos} />
                     </div>
                     <div className="modal-side-div">
                         <div className="action-buttons">
                             <button className="getit-button">GET IT</button>
                             <button className="upvote-button">
-                                UPVOTE {ProductVotes}
+                                UPVOTE {productvotes}
                             </button>
                         </div>
                         <div className="rounded-images"></div>

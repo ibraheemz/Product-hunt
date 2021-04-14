@@ -1,17 +1,30 @@
 import { useState } from 'react'
-const Carousel = (props) => {
-    const [photos] = useState(props.ProductPhotos)
+const Carousel = ({ productphotos }) => {
+    const [media] = useState(productphotos)
     const [active, setActive] = useState(0)
+    const [videoLink, setVideoLink] = useState('')
     return (
         <div className="carousel">
-            <img src={photos[active]} alt="product thumbnail" />
-            <div className="carousel-smaller">
-                {photos.map((photo, index) => (
+            {media[active].includes('youtube') ? (
+                (console.log('youtube'),
+                (
+                    <iframe
+                        title="product-video"
+                        width="500"
+                        height="300"
+                        source={media[active]}
+                    ></iframe>
+                ))
+            ) : (
+                <img src={media[active]} alt="product thumbnail" />
+            )}
+            <div className="carousel-smaller row">
+                {media.map((item, index) => (
                     <img
-                        key={photo}
+                        key={index}
                         onClick={(e) => setActive(+e.target.dataset.index)}
                         data-index={index}
-                        src={photo}
+                        src={item}
                         alt={'product'}
                         className={index === active ? 'active' : ''}
                     />

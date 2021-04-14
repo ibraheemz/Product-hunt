@@ -45,7 +45,7 @@
     font-weight: 550;
     margin-bottom: 10px;
 }
-.product {
+.today-product {
     background-color: white;
     border-bottom: 1px solid rgb(230, 230, 230);
 }
@@ -376,3 +376,5 @@
 /* .overlay-search {
     top: 0;
 } */
+.container-footer {
+}
