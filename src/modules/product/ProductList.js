@@ -60,7 +60,9 @@ const ProductList = () => {
                                     productdescription={item.tagline}
                                     productvotes={item.votes_count}
                                     commentsnum={item.comments_count}
-                                    //productCategory={item.topics[0].name}
+                                    productcategory={item.topics.map(
+                                        (item) => item.name
+                                    )}
                                     categorylink={item.discussion_url}
                                     id={item.id}
                                     //ProductPhotos={product.ProductPhotos} no photos for the carousel

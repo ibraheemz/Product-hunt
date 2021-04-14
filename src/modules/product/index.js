@@ -22,7 +22,6 @@ const Product = ({
     const [showProduct, setShowProduct] = useState(false)
     const [voteButtonOff, setVoteButtonOff] = useState(true)
     const alt = `Product ${id}`
-
     useEffect(() => {
         var config = {
             method: 'Get',
@@ -34,23 +33,6 @@ const Product = ({
                     'Bearer ah7jK8UqHEpefPjplVqHJgMZx7rv0xQR4-BklgmenQU',
             },
         }
-        // axios(config)
-        //     .then(function (response) {
-        //         setPost(response.data.post)
-        //         setLoading(false)
-        //         // for (let i = 0; i < 4; i++) {
-        //         //     setAllMedia([
-        //         //         ...allMedia,
-        //         //         response.data.post.media[1].image_url,
-        //         //     ])
-        //         // }
-        //         response.data.post.media.map((item) => {
-        //             return setAllMedia([...allMedia, item.image_url])
-        //         })
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error)
-        //     })
         async function getpost() {
             try {
                 let response = await axios(config)
@@ -61,8 +43,10 @@ const Product = ({
                     if (item.video_id !== null) {
                         setAllMedia((allMedia) => [
                             ...allMedia,
-                            item.metadata.url,
-                            item.image_url,
+                            {
+                                video_url: item.metadata.url,
+                                img_url: item.image_url,
+                            },
                         ])
                     } else {
                         setAllMedia((allMedia) => [...allMedia, item.image_url])
@@ -124,7 +108,7 @@ const Product = ({
                                     className="category-link"
                                     href={categorylink}
                                 >
-                                    {productcategory}
+                                    {productcategory[0]}
                                 </a>
                             </div>
                         </div>
@@ -153,9 +137,10 @@ const Product = ({
                         productname={productname}
                         productdescription={productdescription}
                         categorylink={categorylink}
-                        productCategory={productcategory}
+                        productcategory={productcategory}
                         commentsNum={commentsnum}
                         productphotos={allMedia}
+                        //productlandingpage={post.install_links.redirect_url} post.install_links
                         show={showProduct}
                         onHide={() => setShowProduct(false)}
                     />

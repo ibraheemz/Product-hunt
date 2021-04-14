@@ -11,10 +11,12 @@ function ProductModal({
     productcategory,
     commentsnum,
     productphotos,
+    productlandingpage,
     show,
     onHide,
 }) {
     const alt = `Product ${id}`
+    console.log(productcategory)
     return (
         <Modal
             productvotes={productvotes}
@@ -26,6 +28,7 @@ function ProductModal({
             productcategory={productcategory}
             commentsnum={commentsnum}
             productphotos={productphotos}
+            productlandingpage={productlandingpage}
             show={show}
             onHide={onHide}
             dialogClassName="modal-73w"
@@ -46,10 +49,17 @@ function ProductModal({
                         <p className="modal-product-breef">
                             {productdescription}
                         </p>
-                        <div className="modal-product-footer">
-                            <button className="cat-button">
-                                {productcategory}
-                            </button>
+                        <div className="modal-product-cats">
+                            {productcategory.map((item) => {
+                                return (
+                                    <a
+                                        href={categorylink}
+                                        className="modal-cat-button"
+                                    >
+                                        {item}
+                                    </a>
+                                )
+                            })}
                         </div>
                     </div>
                     <div className="app-trophy">
@@ -64,7 +74,12 @@ function ProductModal({
                     </div>
                     <div className="modal-side-div">
                         <div className="action-buttons">
-                            <button className="getit-button">GET IT</button>
+                            <button
+                                className="getit-button"
+                                onClick={() => productlandingpage}
+                            >
+                                GET IT
+                            </button>
                             <button className="upvote-button">
                                 UPVOTE {productvotes}
                             </button>
