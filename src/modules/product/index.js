@@ -5,6 +5,21 @@ import ProductModal from './ProductModal'
 import { ArrowUpCircleFill, Chat } from 'react-bootstrap-icons'
 import $ from 'jquery'
 
+const mediaUrls = (mediaArray) => {
+    if (!mediaArray) return
+
+    let urls = []
+    mediaArray.map((item) => {
+        if (item.video_id !== null) {
+            urls.push({ video_url: item.metadata.url, img_url: item.image_url })
+        } else {
+            urls.push({ img_url: item.image_url })
+        }
+    })
+
+    return urls
+}
+
 const Product = ({
     productvotes,
     id,
@@ -16,7 +31,6 @@ const Product = ({
     commentsnum,
 }) => {
     const [post, setPost] = useState({})
-    const [allMedia, setAllMedia] = useState([])
     const [loading, setLoading] = useState(true)
     const [currentProductVotes, setCurrentProductVotes] = useState(productvotes)
     const [showProduct, setShowProduct] = useState(false)
@@ -37,21 +51,6 @@ const Product = ({
             try {
                 let response = await axios(config)
                 let data = await response.data.post
-                let postsMedia = response.data.post.media
-                console.log(postsMedia)
-                postsMedia.map((item) => {
-                    if (item.video_id !== null) {
-                        setAllMedia((allMedia) => [
-                            ...allMedia,
-                            {
-                                video_url: item.metadata.url,
-                                img_url: item.image_url,
-                            },
-                        ])
-                    } else {
-                        setAllMedia((allMedia) => [...allMedia, item.image_url])
-                    }
-                })
                 setLoading(false)
                 setPost(data)
             } catch (error) {
@@ -60,6 +59,10 @@ const Product = ({
         }
         getpost()
     }, [])
+
+    useEffect(() => {
+        console.log(post)
+    }, [post])
     return (
         <div>
             {loading ? (
@@ -139,7 +142,7 @@ const Product = ({
                         categorylink={categorylink}
                         productcategory={productcategory}
                         commentsNum={commentsnum}
-                        productphotos={allMedia}
+                        productphotos={mediaUrls(post.media)}
                         //productlandingpage={post.install_links.redirect_url} post.install_links
                         show={showProduct}
                         onHide={() => setShowProduct(false)}

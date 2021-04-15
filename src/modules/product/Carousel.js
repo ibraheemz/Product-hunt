@@ -4,7 +4,7 @@ const Carousel = ({ productphotos }) => {
     const [active, setActive] = useState(0)
     return (
         <div className="carousel">
-            {typeof media[active] === 'object' ? (
+            {media[active].video_url ? (
                 <iframe
                     title="Embedded youtube"
                     frameBorder="0"
@@ -14,11 +14,11 @@ const Carousel = ({ productphotos }) => {
                         .replace('&feature=youtu.be', '')}
                 ></iframe>
             ) : (
-                <img src={media[active]} alt="product thumbnail" />
+                <img src={media[active].img_url} alt="product thumbnail" />
             )}
             <div className="carousel-smaller row">
                 {media.map((item, index) =>
-                    typeof item === 'object' ? (
+                    item.video_url ? (
                         <img
                             key={index}
                             onClick={(e) => setActive(+e.target.dataset.index)}
@@ -32,7 +32,7 @@ const Carousel = ({ productphotos }) => {
                             key={index}
                             onClick={(e) => setActive(+e.target.dataset.index)}
                             data-index={index}
-                            src={item}
+                            src={item.img_url}
                             alt={'product'}
                             className={index === active ? 'active' : ''}
                         />
