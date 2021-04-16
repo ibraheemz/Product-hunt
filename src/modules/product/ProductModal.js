@@ -3,6 +3,8 @@ import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Carousel from './Carousel'
 import axios from 'axios'
+import $ from 'jquery'
+
 const mediaUrls = (mediaArray) => {
     if (!mediaArray) return
 
@@ -16,6 +18,7 @@ const mediaUrls = (mediaArray) => {
     })
     return urls
 }
+
 function ProductModal({
     productvotes,
     id,

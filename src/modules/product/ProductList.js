@@ -1,19 +1,31 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Product from './index'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import React from 'react'
+import $ from 'jquery'
 
 const ProductList = () => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
-    const [currentPosts, setCurrentPosts] = useState([])
-    const [postId, setPostId] = useState('')
-    const d = new Date().toString().split(' ').splice(1, 3).join(' ')
+    // const d = new Date().toString().split(' ').splice(1, 3).join(' ')
+    let date = new Date()
+    let dd = date.getDate()
+    let mm = date.getMonth() + 1
+    const yyyy = date.getFullYear()
+    if (dd < 10) {
+        dd = `0${dd}`
+    }
+
+    if (mm < 10) {
+        mm = `0${mm}`
+    }
+    const today = `${yyyy}-${mm}-${dd}`
     // fetching posts from the API
     useEffect(() => {
         var config = {
             method: 'Get',
-            url: 'https://api.producthunt.com/v1/posts',
+            url: `https://api.producthunt.com/v1/posts?page=1&per_page=30`,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -30,15 +42,26 @@ const ProductList = () => {
             })
     }, [])
     useEffect(() => {
-        setCurrentPosts(posts.splice(0, 12))
-        posts.length > 0 && setLoading(false)
+        // setPerPage(posts.slice(0, 12))
+        setLoading(false)
     }, [posts])
 
+    $(function () {
+        $('.today-product').slice(0, 12).show()
+        $('#loadMore').on('click', function (e) {
+            e.preventDefault()
+            $('.today-product:hidden').slice(0, 10).show()
+
+            $('#loadMore').hide()
+
+            // $("#loadMore").text('Load only the first 4');
+        })
+    })
     return (
         <div className="container-fluid main-div">
             <div className="main-div-margin">
                 <div className="time-span">
-                    <span className="main-div ml-0 ">{d}</span>
+                    <span className="main-div ml-0 ">Today</span>
                 </div>
                 {loading ? (
                     <div className="d-flex justify-content-center">
@@ -48,7 +71,7 @@ const ProductList = () => {
                     </div>
                 ) : (
                     <div>
-                        {currentPosts.map((item, index) => (
+                        {posts.map((item, index) => (
                             <div
                                 className="today-product"
                                 id={'a' + index}
@@ -69,9 +92,13 @@ const ProductList = () => {
                                 />
                             </div>
                         ))}
-                        <div className="container-footer d-flex justify-content-center bg-white">
+                        <a
+                            href="#"
+                            id="loadMore"
+                            className="container-footer bg-white"
+                        >
                             SHOW {posts.length - 12} MORE
-                        </div>
+                        </a>
                     </div>
                 )}
             </div>
