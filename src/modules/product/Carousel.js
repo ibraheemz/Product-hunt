@@ -16,9 +16,9 @@ const Carousel = ({ productphotos }) => {
             ) : (
                 <img src={media[active].img_url} alt="product thumbnail" />
             )}
-            <div className="carousel-smaller row">
+            <div className="carousel-smaller ">
                 {media.map((item, index) =>
-                    typeof item === 'object' ? (
+                    typeof item.hasOwnProperty('video_url') ? (
                         <img
                             key={index}
                             onClick={(e) => setActive(+e.target.dataset.index)}

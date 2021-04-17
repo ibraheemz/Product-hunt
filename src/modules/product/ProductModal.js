@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Carousel from './Carousel'
-import axios from 'axios'
-import $ from 'jquery'
+import axios from '../../lib/Api'
 
 const mediaUrls = (mediaArray) => {
     if (!mediaArray) return
@@ -34,31 +33,36 @@ function ProductModal({
 }) {
     const [post, setPost] = useState({})
     const [loading, setLoading] = useState(true)
+    const [userName, setUserName] = useState('')
+    const [userPp, setUserPp] = useState('')
+    const [healine, setHeadline] = useState('')
     const alt = `Product ${id}`
 
     useEffect(() => {
-        var config = {
-            method: 'Get',
-            url: `https://api.producthunt.com/v1/posts/${id}`,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ah7jK8UqHEpefPjplVqHJgMZx7rv0xQR4-BklgmenQU',
-            },
-        }
         async function getpost() {
             try {
-                let response = await axios(config)
+                let response = await axios(`/v1/posts/${id}`)
                 let data = await response.data.post
                 setLoading(false)
                 setPost(data)
+                console.log(
+                    post.comments
+                ) /* comments un defined, but if i update and save it will appear*/
             } catch (error) {
                 console.log(error.message)
             }
         }
         getpost()
     }, [])
+    // useEffect(() => {
+    //     if (post) {
+    //         setUserName(post.comments.user.username)
+    //         setUserPp(post.comments.user.image_url['30px'])
+    //         setHeadline(post.comments.user.headline)
+    //     } else {
+    //         console.log("post didn't get here")
+    //     }
+    // }, [post])
     return (
         <Modal
             productvotes={productvotes}
@@ -73,9 +77,10 @@ function ProductModal({
             productlandingpage={productlandingpage}
             show={show}
             onHide={onHide}
-            dialogClassName="modal-73w"
+            // dialogClassName="modal-73w"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            size="xl"
         >
             <Modal.Body className="modal-wrapper">
                 <div className="modal-product-header">
@@ -111,21 +116,104 @@ function ProductModal({
                     </div>
                 </div>
                 <div className="modal-body">
-                    <div className="product-carousel">
-                        {loading ? (
-                            <div className="d-flex justify-content-center">
-                                <div className="spinner-border" role="status">
-                                    <span className="visually-hidden"></span>
+                    <div className="product-right">
+                        {/*className="modal-body" bg-not white*/}
+                        <div className="product-carousel">
+                            {/*className="product-carousel"*/}
+                            {loading ? (
+                                <div className="d-flex justify-content-center">
+                                    <div
+                                        className="spinner-border"
+                                        role="status"
+                                    >
+                                        <span className="visually-hidden"></span>
+                                    </div>
+                                </div>
+                            ) : (
+                                <Carousel
+                                    productphotos={mediaUrls(post.media)}
+                                />
+                            )}
+                            <div className="carousel-footer">
+                                <hr />
+                                <p>{post.description}</p>
+                                <div className="social-buttons">
+                                    <a
+                                        class="btn-floating btn btn-tw"
+                                        type="button"
+                                        role="button"
+                                        title="Share on twitter"
+                                        href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fparse.com"
+                                        rel="noopener"
+                                    >
+                                        <i class="fab fa-2x fa-twitter"></i>
+                                    </a>
+                                    <a
+                                        class="btn-floating btn btn-tw"
+                                        type="button"
+                                        role="button"
+                                        title="Share on facebook"
+                                        href="https://www.facebook.com/sharer.php?u="
+                                        rel="noopener"
+                                    >
+                                        <i class="fab fa-2x fa-facebook-f"></i>
+                                    </a>
                                 </div>
                             </div>
-                        ) : (
-                            <Carousel productphotos={mediaUrls(post.media)} />
-                        )}
+                        </div>
+                        <div className="discussion-container">
+                            <div className="discussion-header">
+                                <span className="discussion-text">
+                                    DISCUSSION
+                                </span>
+                                <a
+                                    className="discussion-link"
+                                    href={
+                                        productcategory
+                                    } /*productcategory is disscussion will be renamed*/
+                                >
+                                    FOLLOW DISCUSSION
+                                </a>
+                            </div>
+                            <div className="discussion">
+                                <div className="thread-container">
+                                    <div className="comments-header">
+                                        <p>Would you recommend this product?</p>
+                                        <form className="comment-form">
+                                            <div className="user-pp-div">
+                                                <img className="user-pp" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                className="comment-text-area"
+                                                placeholder="  What do you think of this product?"
+                                                aria-label="user-comment"
+                                            ></input>
+                                            <button
+                                                className="btn btn-primary btn-sm comment-container-button"
+                                                type="submit"
+                                            >
+                                                Send
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div className="comment-container">
+                                        <div className="user-info">
+                                            <img
+                                                src={userPp}
+                                                alt="user-pp"
+                                            ></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div className="modal-side-div">
                         <div className="action-buttons">
                             <button
-                                className="getit-button"
+                                className="getit-button btn-sm"
                                 onClick={() => productlandingpage}
                             >
                                 GET IT

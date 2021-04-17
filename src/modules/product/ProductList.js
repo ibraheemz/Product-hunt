@@ -1,39 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Product from './index'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import axios from '../../lib/Api'
 import React from 'react'
 import $ from 'jquery'
 
 const ProductList = () => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
-    // const d = new Date().toString().split(' ').splice(1, 3).join(' ')
-    let date = new Date()
-    let dd = date.getDate()
-    let mm = date.getMonth() + 1
-    const yyyy = date.getFullYear()
-    if (dd < 10) {
-        dd = `0${dd}`
-    }
-
-    if (mm < 10) {
-        mm = `0${mm}`
-    }
-    const today = `${yyyy}-${mm}-${dd}`
-    // fetching posts from the API
     useEffect(() => {
-        var config = {
-            method: 'Get',
-            url: `https://api.producthunt.com/v1/posts?page=1&per_page=30`,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ah7jK8UqHEpefPjplVqHJgMZx7rv0xQR4-BklgmenQU',
-            },
-        }
-        axios(config)
+        axios('/v1/posts?page=1&per_page=30')
             .then(function (response) {
                 setPosts(response.data.posts)
             })
@@ -42,7 +18,6 @@ const ProductList = () => {
             })
     }, [])
     useEffect(() => {
-        // setPerPage(posts.slice(0, 12))
         setLoading(false)
     }, [posts])
 
@@ -53,8 +28,6 @@ const ProductList = () => {
             $('.today-product:hidden').slice(0, 10).show()
 
             $('#loadMore').hide()
-
-            // $("#loadMore").text('Load only the first 4');
         })
     })
     return (
