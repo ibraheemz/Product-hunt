@@ -80,19 +80,21 @@ const Product = ({
                         </button>
                     </div>
                 </div>
-                <ProductModal
-                    productvotes={currentProductVotes}
-                    id={id}
-                    productimg={productimg}
-                    productname={productname}
-                    productdescription={productdescription}
-                    categorylink={categorylink}
-                    productcategory={productcategory}
-                    commentsNum={commentsnum}
-                    //productlandingpage={post.install_links.redirect_url}
-                    show={showProduct}
-                    onHide={() => setShowProduct(false)}
-                />
+                {showProduct && (
+                    <ProductModal
+                        productvotes={currentProductVotes}
+                        id={id}
+                        productimg={productimg}
+                        productname={productname}
+                        productdescription={productdescription}
+                        categorylink={categorylink}
+                        productcategory={productcategory}
+                        commentsNum={commentsnum}
+                        //productlandingpage={post.install_links.redirect_url}
+                        show={showProduct}
+                        onHide={() => setShowProduct(false)}
+                    />
+                )}
             </>
         </div>
     )
