@@ -8,6 +8,7 @@ import $ from 'jquery'
 const ProductList = () => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         axios('/v1/posts?page=1&per_page=30')
             .then(function (response) {

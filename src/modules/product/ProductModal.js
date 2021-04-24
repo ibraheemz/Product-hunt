@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Carousel from './Carousel'
 import axios from '../../lib/Api'
 import Comments from './Comments'
-
+import placeholderImg from '../../assests/images/guest-user-avatar.webp'
 const mediaUrls = (mediaArray) => {
     if (!mediaArray) return
 
@@ -188,13 +188,50 @@ function ProductModal({
                                 <div className="discussion">
                                     <div className="post-thread">
                                         <div className="comments-header">
-                                            <p>
-                                                Would you recommend this
-                                                product?
-                                            </p>
+                                            <div className="recommendation row">
+                                                <p>
+                                                    Would you recommend this
+                                                    product?
+                                                </p>
+                                                <div className="yes-no-buttons">
+                                                    <button className="yes-btn">
+                                                        <i class="far fa-smile mr-1"></i>
+                                                        Yes
+                                                    </button>
+                                                    <button className="no-btn">
+                                                        <i class="far fa-frown mr-1"></i>
+                                                        No
+                                                    </button>
+                                                </div>
+                                                <div className="review">
+                                                    <a href="#">
+                                                        {post.reviews_count}{' '}
+                                                        {''}
+                                                        Reviews
+                                                    </a>
+                                                    {/* (post.reviews_count = 1 ? (
+                                                            <a href="#">
+                                                                {
+                                                                    post.reviews_count
+                                                                }
+                                                                Review
+                                                            </a>
+                                                        ) : (
+                                                            <a href="#">
+                                                                {
+                                                                    post.reviews_count
+                                                                }
+                                                                Reviews
+                                                            </a>
+                                                        )) */}
+                                                </div>
+                                            </div>
                                             <form className="comment-form">
                                                 <div className="user-pp-div">
-                                                    <img className="user-pp" />
+                                                    <img
+                                                        className="user-pp rounded-circle"
+                                                        src={placeholderImg}
+                                                    />
                                                 </div>
                                                 <input
                                                     type="text"

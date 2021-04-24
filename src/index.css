@@ -23,6 +23,7 @@
 }
 .login-form {
     flex-basis: 15%;
+    white-space: nowrap;
 }
 .left-container-sizing {
     grid-column: span 5;
@@ -427,12 +428,12 @@ iframe {
 .discussion-container {
     margin-top: 20px;
     margin-left: 5px;
-    border-radius: ;
 }
 .discussion-header {
-    font-size: 12px;
+    font-size: 11px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 1em;
 }
 .discussion-text {
     grid-column: 1 / span 2;
@@ -473,11 +474,132 @@ iframe {
     color: white;
     border: none;
 }
-.comments-header > p {
-    font-size: 13px;
-    padding-left: 1em;
-    padding-top: 1.5em;
-}
+
 .comments-header {
     border-bottom: 1px solid gainsboro;
+    display: grid;
+}
+.recommendation {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+}
+.recommendation > p {
+    font-size: 13px;
+    margin-left: 3em;
+    padding-top: 1.5em;
+    grid-column: 1 / 6;
+}
+.yes-no-buttons {
+    grid-column: 6 / 8;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 1em;
+    margin-left: -35px;
+}
+.yes-no-buttons > button {
+    border: none;
+    font-size: 12px;
+    width: 55px;
+}
+.yes-btn {
+    background-color: #35930d33;
+    color: #36930d;
+    border-radius: 2px;
+}
+.yes-btn:hover {
+    border: 1px solid #36930d;
+}
+.no-btn {
+    background-color: #d7434333;
+    color: #d74343;
+    border-radius: 2px;
+    margin-left: -45px;
+}
+.no-btn:hover {
+    border: 1px solid #d74343;
+}
+.review {
+    grid-column: 11 / 13;
+    position: relative;
+    right: 0px;
+    font-size: 13px;
+}
+.review > a {
+    color: rgb(124, 124, 124);
+    text-decoration: none;
+}
+.user-comment-body {
+    white-space: pre-line;
+    margin-top: -13px;
+}
+.user-child-comment-body {
+}
+.thread-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    font-size: 13px;
+    margin-top: 0.6em;
+}
+.child-comments-wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    font-size: 13px;
+    margin-top: 0.6em;
+}
+.user-pic {
+    grid-column: 1 / 2;
+}
+.comment-section {
+    grid-column: 2 / 13;
+}
+.user-profile-img {
+    margin-top: 1.5em;
+    margin-left: 1.4em;
+}
+.user-info {
+    margin-left: 0em;
+    margin-top: 16px;
+}
+.user-thread {
+    margin-top: 1em;
+}
+.user-name {
+    font-weight: 600;
+}
+.user-title-wrapper {
+    margin-left: 0.7em;
+}
+.user-title {
+    background-color: #056d4e28;
+    margin: 3px 0px 3px;
+    border-radius: 10px;
+    color: #1f7e34b2;
+    font-size: 12px;
+    padding: 3px 10px 3px;
+}
+
+.post-buttons {
+    margin-top: 1em;
+}
+.comment-upvote {
+    border: none;
+    background: white;
+    color: rgb(124, 124, 124);
+    font-size: 11px;
+    padding: 3px;
+}
+.comment-upvote:hover {
+    padding: 3px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+.share-button:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+.child-comments-thread {
+    margin-left: 1em;
 }
