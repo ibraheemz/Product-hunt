@@ -4,20 +4,63 @@ import { useState, useEffect } from 'react'
 import axios from '../../lib/Api'
 import React from 'react'
 import $ from 'jquery'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-const ProductList = () => {
+const ProductList = ({ day, page }) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
+    const [dayName, setDayName] = useState('Today')
+    // const d = new Date()
 
-    useEffect(() => {
-        axios('/v1/posts?page=1&per_page=30')
+    var weekday = [
+        'sunday',
+        'monday',
+        'tuseday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+    ]
+
+    //     const d = new Date()
+    //     const todayInMonth = d.getDate() - 1 // returns 26
+    //     const todayInWeek = d.getDay() //1
+    //     const dayIndex = todayInWeek - (todayInMonth - day)
+    //     if (day === todayInMonth) {
+    //         setDayName(weekday[todayInWeek])
+    //     } else if (dayIndex >= -7 && dayIndex <= -1) {
+    //         setDayName(weekday[dayIndex + 7])
+    //     } else if (dayIndex >= -14 && dayIndex <= -8) {
+    //         setDayName(weekday[dayIndex + 14])
+    //     } else if (!day) {
+    //         console.log("didn't get day")
+    //     } else {
+    //         console.log("couldn't name the day")
+    //     }
+    // }
+    const abortCont = new AbortController()
+    const getPosts = () => {
+        // axios(`/v1/posts?page=${page}&per_page=30`)
+        axios(`/v1/posts?day=2021-4-${day}`, {
+            signal: abortCont.signal,
+        })
             .then(function (response) {
-                setPosts(response.data.posts)
+                setPosts([...posts, ...response.data.posts])
             })
             .catch(function (error) {
-                console.log(error)
+                if (error.name === 'AbortError') {
+                    console.log('fetch aborted')
+                } else {
+                    console.log(error.message)
+                }
             })
-    }, [])
+    }
+    useEffect(() => {
+        getPosts()
+        day === undefined && console.log('day is undefined', dayName)
+        setDayName(weekday[new Date(`4/${day}/2021`).getDay()])
+        return () => abortCont.abort()
+    }, [day])
     useEffect(() => {
         setLoading(false)
     }, [posts])
@@ -31,11 +74,24 @@ const ProductList = () => {
             $('#loadMore').hide()
         })
     })
+    //show more button
+
+    //scroll
+    // window.onscroll = function (ev) {
+    //     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+    //         // you're at the bottom of the page
+    //         console.log('Bottom of page')
+    //         setDay((prev) => prev - 1)
+    //         setPage((prev) => prev + 1)
+    //         $('.container-fluid main-div').append('.main-div-margin')
+    //     }
+    // }
+
     return (
         <div className="container-fluid main-div">
             <div className="main-div-margin">
                 <div className="time-span">
-                    <span className="main-div ml-0 ">Today</span>
+                    <span className="main-div ml-0 ">{dayName}</span>
                 </div>
                 {loading ? (
                     <div className="d-flex justify-content-center">
