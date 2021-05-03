@@ -6,10 +6,11 @@ import $ from 'jquery'
 import React from 'react'
 const App = () => {
     const d = new Date()
-    const [day, setDay] = useState([d.getDate() - 1])
+    const [day, setDay] = useState([d.getDate()])
+    const [month, setMonth] = useState(d.getMonth() + 1)
     const [page, setPage] = useState([1])
-    const [dayAndPage, setDayAndPage] = useState([
-        { day: day[0], page: page[0] },
+    const [dateAndPage, setDateAndPage] = useState([
+        { day: day[0], page: page[0], month: month },
     ])
 
     // let scrolled = Math.round(window.scrollY)
@@ -18,62 +19,42 @@ const App = () => {
         if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
             // you're at the bottom of the page
             console.log('Bottom of page')
-            setDay([...day, day[day.length - 1] - 1])
+            if (day[day.length - 1] - 1 === 0) {
+                setDay([...day, day[day.length - 1] - 1 + 30])
+                setMonth(month - 1)
+            } else {
+                setDay([...day, day[day.length - 1] - 1])
+            }
             setPage([...page, page[page.length - 1] + 1])
-            console.log('i set day here')
         }
     }
     useEffect(() => {
-        setDayAndPage([
-            ...dayAndPage,
+        setDateAndPage([
+            ...dateAndPage,
             {
                 day: day[day.length - 1],
                 page: page[page.length - 1],
+                month: month,
             },
-            console.log(dayAndPage, 'useEffect here'),
+            console.log(dateAndPage, 'useEffect here'),
         ])
-        dayAndPage[0] === dayAndPage[1] && setDayAndPage(dayAndPage.shift())
-        console.log(dayAndPage)
+        console.log(dateAndPage)
         return console.log('cleanUp')
-    }, [day])
-    // const scrollToEnd = () => {
-    //     setPage(page + 1)
-    //     setDay(day - 1)
-    // }
-    // window.addEventListener('scroll', function () {
-    //     if (
-    //         window.innerHeight + document.documentElement.scrollTop ===
-    //         document.documentElement.offsetHeight
-    //     ) {
-    //         console.log(
-    //             window.innerHeight,
-    //             document.documentElement.scrollTop,
-    //             document.documentElement.offsetHeight
-    //         )
-    //         scrollToEnd()
-    //     }
-    // })
+    }, [page])
 
-    // const handleScroll = (e) => {
-    //     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget
-    //     if (scrollHeight - scrollTop === clientHeight) {
-    //         console.log(scrollHeight)
-    //         setPage((prev) => prev + 1)
-    //         setDay((prev) => prev - 1)
-    //     }
-    // }
     return (
         <div className="App bg-light">
             <Header />
             <div className="content">
                 <div className="left-container-sizing" id="someId">
-                    {dayAndPage.map((item) =>
+                    {dateAndPage.map((item) =>
                         item === undefined ? (
                             console.log('item is undefined')
                         ) : (
                             <ProductList
                                 day={item.day}
                                 page={item.page}
+                                month={item.month}
                                 key={item.page}
                             />
                         )

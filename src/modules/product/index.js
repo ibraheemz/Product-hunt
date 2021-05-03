@@ -75,7 +75,7 @@ const Product = ({
                                 }
                             }}
                         >
-                            <ArrowUpCircleFill />
+                            <i className="fas fa-caret-up mr-2 ml-2"></i>
                             <p>{currentProductVotes}</p>
                         </button>
                     </div>

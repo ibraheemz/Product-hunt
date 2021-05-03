@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ThreeDots, Search } from 'react-bootstrap-icons'
+import SearchResults from './SearchResults'
 import LoginModal from '../../../login&signup/LoginModal'
 import SignUpModal from '../../../login&signup/SignUpModal'
 import SiteLogo from '../../../../assests/images/gaming-logo.png'
@@ -7,6 +8,7 @@ import $ from 'jquery'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
     const [showSignUp, setShowSignUp] = useState(false)
+    const [value, setValue] = useState('')
     // Open the full screen search box
     function openSearch() {
         document.getElementById('searchOverlay').style.display = 'block'
@@ -32,16 +34,27 @@ const Header = () => {
                     <form className="d-flex input-group-sm col-4">
                         {$(window).width() <= 768 ? (
                             <div onClick={() => openSearch()}>
-                                <Search />
+                                {/* <Search /> */}
+                                <input
+                                    className="form-control me-2 nav-search-sm"
+                                    type="search"
+                                    placeholder={'Search Here ...'}
+                                    aria-label="Search"
+                                    value={value}
+                                    onChange={(e) => setValue(e.target.value)}
+                                ></input>
                             </div>
                         ) : (
                             <input
-                                className="form-control me-2 nav-search-sm"
+                                className="form-control me-2 nav-search-sm input_width"
                                 type="search"
                                 placeholder={
                                     'Discover your new favorite thing...'
                                 }
                                 aria-label="Search"
+                                value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                                onClick={() => openSearch()}
                             ></input>
                         )}
                     </form>
@@ -138,26 +151,17 @@ const Header = () => {
                     />
                 </div>
             </nav>
-            <div id="searchOverlay" className="overlay">
-                <span
-                    className="closebtn"
-                    onClick={() => closeSearch()}
-                    title="Close Overlay"
-                >
-                    x
-                </span>
+            <div
+                id="searchOverlay"
+                className="overlay"
+                onClick={(e) => {
+                    $(e.target).hasClass('result')
+                        ? console.log('search-result div clicked')
+                        : closeSearch()
+                }}
+            >
                 <div className="overlay-content">
-                    <div className="search-icon-span">
-                        <span className="input-group-text" id="basic-addon1">
-                            <i className="bi bi-search"></i>
-                        </span>
-                    </div>
-                    <input
-                        type="text"
-                        placeholder="Discover your new favorite thing..."
-                        name="search"
-                        className="overlay-search"
-                    ></input>
+                    <SearchResults value={value} />
                 </div>
             </div>
         </div>

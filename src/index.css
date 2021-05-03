@@ -21,6 +21,7 @@
 .input-group-sm {
     flex-basis: 100%;
 }
+
 .login-form {
     flex-basis: 15%;
     white-space: nowrap;
@@ -48,6 +49,10 @@
 }
 .today-product {
     display: none;
+    background-color: white;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+.today-product2 {
     background-color: white;
     border-bottom: 1px solid rgb(230, 230, 230);
 }
@@ -354,7 +359,7 @@ iframe {
         0,
         0,
         0,
-        0.9
+        0.7
     ); /* Black with a little bit see-through */
 }
 
@@ -369,42 +374,14 @@ iframe {
     margin-top: 30px;
     margin: auto;
 }
-.overlay-search {
-    grid-column: span 9;
+/*search-result*/
+.search-result {
+    position: relative;
+    top: 71px;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    grid-column: 3/9;
 }
-.search-icon-span {
-    grid-column: span 1;
-}
-/* Close button */
-.overlay .closebtn {
-    position: absolute;
-    top: 50px;
-    right: 45px;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    color: rgb(189, 15, 15);
-}
-
-.overlay .closebtn:hover {
-    color: #ccc;
-}
-
-/* Style the search field */
-.overlay input[type='text'] {
-    padding: 15px;
-    font-size: 17px;
-    border: none;
-    float: left;
-    width: 100%;
-    background: white;
-}
-.overlay input[type='text']:hover {
-    background: #f1f1f1;
-}
-/* .overlay-search {
-    top: 0;
-} */
 .container-footer {
     display: flex;
     justify-content: center;
@@ -602,4 +579,8 @@ iframe {
 }
 .child-comments-thread {
     margin-left: 1em;
+}
+.container-footer {
+    border: none;
+    width: 100%;
 }

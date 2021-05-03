@@ -6,7 +6,7 @@ import React from 'react'
 import $ from 'jquery'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-const ProductList = ({ day, page }) => {
+const ProductList = ({ day, page, month }) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [dayName, setDayName] = useState('Today')
@@ -41,7 +41,7 @@ const ProductList = ({ day, page }) => {
     const abortCont = new AbortController()
     const getPosts = () => {
         // axios(`/v1/posts?page=${page}&per_page=30`)
-        axios(`/v1/posts?day=2021-4-${day}`, {
+        axios(`/v1/posts?day=2021-${month}-${day}`, {
             signal: abortCont.signal,
         })
             .then(function (response) {
@@ -58,35 +58,21 @@ const ProductList = ({ day, page }) => {
     useEffect(() => {
         getPosts()
         day === undefined && console.log('day is undefined', dayName)
-        setDayName(weekday[new Date(`4/${day}/2021`).getDay()])
+        setDayName(weekday[new Date(`${month}/${day}/2021`).getDay()])
         return () => abortCont.abort()
     }, [day])
     useEffect(() => {
         setLoading(false)
     }, [posts])
-
     $(function () {
-        $('.today-product').slice(0, 12).show()
+        // $('.today-product').slice(0, 12).show()
         $('#loadMore').on('click', function (e) {
             e.preventDefault()
-            $('.today-product:hidden').slice(0, 10).show()
-
+            // $('.today-product:hidden').slice(0, 10).show()
+            $('.today-product:hidden').show()
             $('#loadMore').hide()
         })
     })
-    //show more button
-
-    //scroll
-    // window.onscroll = function (ev) {
-    //     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-    //         // you're at the bottom of the page
-    //         console.log('Bottom of page')
-    //         setDay((prev) => prev - 1)
-    //         setPage((prev) => prev + 1)
-    //         $('.container-fluid main-div').append('.main-div-margin')
-    //     }
-    // }
-
     return (
         <div className="container-fluid main-div">
             <div className="main-div-margin">
@@ -101,34 +87,53 @@ const ProductList = ({ day, page }) => {
                     </div>
                 ) : (
                     <div>
-                        {posts.map((item, index) => (
-                            <div
-                                className="today-product"
-                                id={'a' + index}
-                                key={index}
-                            >
-                                <Product
-                                    productimg={item.thumbnail.image_url}
-                                    productname={item.name}
-                                    productdescription={item.tagline}
-                                    productvotes={item.votes_count}
-                                    commentsnum={item.comments_count}
-                                    productcategory={item.topics.map(
-                                        (item) => item.name
-                                    )}
-                                    categorylink={item.discussion_url}
-                                    id={item.id}
-                                    //ProductPhotos={product.ProductPhotos} no photos for the carousel
-                                />
-                            </div>
-                        ))}
-                        <a
-                            href="#"
+                        {posts.map((item, index) =>
+                            index <= 12 ? (
+                                <div
+                                    className="today-product2"
+                                    id={'a' + index}
+                                    key={index}
+                                >
+                                    <Product
+                                        productimg={item.thumbnail.image_url}
+                                        productname={item.name}
+                                        productdescription={item.tagline}
+                                        productvotes={item.votes_count}
+                                        commentsnum={item.comments_count}
+                                        productcategory={item.topics.map(
+                                            (item) => item.name
+                                        )}
+                                        categorylink={item.discussion_url}
+                                        id={item.id}
+                                    />
+                                </div>
+                            ) : (
+                                <div
+                                    className="today-product"
+                                    id={'a' + index}
+                                    key={index}
+                                >
+                                    <Product
+                                        productimg={item.thumbnail.image_url}
+                                        productname={item.name}
+                                        productdescription={item.tagline}
+                                        productvotes={item.votes_count}
+                                        commentsnum={item.comments_count}
+                                        productcategory={item.topics.map(
+                                            (item) => item.name
+                                        )}
+                                        categorylink={item.discussion_url}
+                                        id={item.id}
+                                    />
+                                </div>
+                            )
+                        )}
+                        <button
                             id="loadMore"
                             className="container-footer bg-white"
                         >
                             SHOW {posts.length - 12} MORE
-                        </a>
+                        </button>
                     </div>
                 )}
             </div>
