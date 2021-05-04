@@ -155,7 +155,12 @@ const Header = () => {
                 id="searchOverlay"
                 className="overlay"
                 onClick={(e) => {
-                    $(e.target).hasClass('result')
+                    $(e.target).hasClass('result') ||
+                    $(e.target).hasClass('list-item-image-container') ||
+                    $(e.target).hasClass('list-item-image') ||
+                    $(e.target).hasClass('list-item-desc') ||
+                    $(e.target).prop('nodeName') === 'SPAN' ||
+                    $(e.target).prop('nodeName') === 'A'
                         ? console.log('search-result div clicked')
                         : closeSearch()
                 }}

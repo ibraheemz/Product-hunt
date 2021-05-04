@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import $ from 'jquery'
+import Linkify from 'react-linkify'
 const moment = require('moment')
 const ChildComments = (item) => {
     const [votes, setVotes] = useState(item.item.votes)
     const [voteOff, setVoteOff] = useState(false)
-    const getTag = (body) => {
-        const extracttag = /^\100\w*/g.exec(body)
-        console.log(extracttag)
-        const tagText = extracttag[0]
-        const bodyWithTag = body.replace(tagText, <a href="#">{tagText}</a>)
-        console.log(tagText)
-        return bodyWithTag
-    }
+    // const body = item.item.body
+    const extracttag = /^\100\w*/g.exec(item.item.body)[0]
+    // // const targetDiv = document.getElementById('test')
+    // console.log('target div  ' + targetDiv)
+    // const tagText = extracttag[0]
+    // const tagAnchor = <a href="#">{tagText}</a>
+    // body.insertBefore(tagAnchor, document.getElementById('test').childNodes[0])
+    // // console.log(tagText)
+    // {/^\100\w*/g.exec(item.item.body).anchor()} regex to find @+wordafter
     return (
         <div className="child-comments-wrapper">
             <div className="user-pic">
@@ -32,9 +34,21 @@ const ChildComments = (item) => {
                         {'\n'.concat(item.item.user.headline)}
                     </span>
                     <div className="user-comment">
-                        <div className="user-child-comment-body">
-                            {/^\100\w*/g.exec(item.item.body) &&
-                                getTag(item.item.body)}
+                        <div className="user-child-comment-body" id="test">
+                            <p id="child-comment-id">
+                                <Linkify>
+                                    {item.item.body.replace(
+                                        /^\100\w*/g.exec(item.item.body)[0],
+                                        `<a href="#">
+                                            ${
+                                                /^\100\w*/g.exec(
+                                                    item.item.body
+                                                )[0]
+                                            }
+                                        </a>`
+                                    )}
+                                </Linkify>
+                            </p>
                         </div>
                         <div className="post-buttons">
                             <button
