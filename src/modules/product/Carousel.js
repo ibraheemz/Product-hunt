@@ -8,7 +8,7 @@ const Carousel = ({ productphotos }) => {
                 <iframe
                     title="Embedded youtube"
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="autoplay" //accelerometer clipboard-write; encrypted-media; gyroscope; picture-in-picture
                     src={media[active].video_url
                         .replace('watch?v=', 'embed/')
                         .replace('&feature=youtu.be', '')}

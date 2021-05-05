@@ -375,12 +375,60 @@ iframe {
     margin: auto;
 }
 /*search-result*/
-.search-result {
+.search-result-container {
     position: relative;
     top: 71px;
-    height: fit-content;
+    max-height: fit-content;
     background-color: rgb(255, 255, 255);
     grid-column: 3/9;
+}
+.results-section1 {
+    float: left;
+}
+.search-result-container > a {
+    margin-left: 1.7em;
+    margin-bottom: 0.7em;
+    margin-top: 1em;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(100, 100, 100);
+}
+.result-list > a:hover {
+    text-decoration: underline;
+    color: hsl(0, 0%, 28%);
+}
+.result-list {
+    list-style-type: none;
+    margin-left: -40px;
+    margin-top: 3em;
+}
+.result-list > li {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding-bottom: 1em;
+}
+.list-item-image-container {
+    grid-column: 1/2;
+}
+.list-item-desc {
+    grid-column: 2/13;
+    justify-self: start;
+}
+.list-item-desc > span {
+    float: left;
+    font-size: 14px;
+}
+.list-item-tagline {
+    color: gray;
+    margin-top: -5px;
+}
+.bold-name {
+    font-weight: 600;
+}
+.list-item-image {
+    width: 40px;
+    height: 40px;
 }
 .container-footer {
     display: flex;
