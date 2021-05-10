@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Carousel from './Carousel'
-import axios from '../../lib/Api'
+import Api from '../../lib/Api'
 import Comments from './Comments'
 import placeholderImg from '../../assests/images/guest-user-avatar.webp'
 const mediaUrls = (mediaArray) => {
@@ -36,24 +36,9 @@ function ProductModal({
     const [loading, setLoading] = useState(true)
     const [comments, setComments] = useState([])
     const alt = `Product ${id}`
-    // useEffect(() => {
-    //     async function getpost() {
-    //         try {
-    //             let response = await axios(`/v1/posts/${id}`)
-    //             let data = response.data.post
-    //             setLoading(false)
-    //             setPost(data)
-    //             setComments(data.comments)
-    //             /* comments un defined, but if i update and save it will appear*/
-    //         } catch (error) {
-    //             console.log(error.message)
-    //         }
-    //     }
-    //     getpost()
-    // }, [])
     useEffect(() => {
         setLoading(true)
-        axios(`/v1/posts/${id}`)
+        Api(`/v1/posts/${id}`)
             .then((response) => {
                 setPost(response.data.post)
                 setComments(response.data.post.comments)
@@ -63,7 +48,7 @@ function ProductModal({
                 setLoading(false)
                 console.log(e)
             })
-    }, [])
+    }, [id])
 
     return (
         <Modal

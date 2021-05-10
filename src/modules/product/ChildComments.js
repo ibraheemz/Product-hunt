@@ -6,7 +6,7 @@ const ChildComments = (item) => {
     const [votes, setVotes] = useState(item.item.votes)
     const [voteOff, setVoteOff] = useState(false)
     // const body = item.item.body
-    const extracttag = /^\100\w*/g.exec(item.item.body)[0]
+    // const extracttag = /^\100\w*/g.exec(item.item.body)[0]
     // // const targetDiv = document.getElementById('test')
     // console.log('target div  ' + targetDiv)
     // const tagText = extracttag[0]
@@ -30,24 +30,16 @@ const ChildComments = (item) => {
                     <div className="user-info row pb-1">
                         <span className="user-name">{item.item.user.name}</span>
                     </div>
-                    <span className="user-headline text-secondary">
-                        {'\n'.concat(item.item.user.headline)}
-                    </span>
+                    {item.item.user.headline && (
+                        <span className="user-headline text-secondary">
+                            {'\n'.concat(item.item.user.headline)}
+                        </span>
+                    )}
+
                     <div className="user-comment">
                         <div className="user-child-comment-body" id="test">
                             <p id="child-comment-id">
-                                <Linkify>
-                                    {item.item.body.replace(
-                                        /^\100\w*/g.exec(item.item.body)[0],
-                                        `<a href="#">
-                                            ${
-                                                /^\100\w*/g.exec(
-                                                    item.item.body
-                                                )[0]
-                                            }
-                                        </a>`
-                                    )}
-                                </Linkify>
+                                <Linkify>{item.item.body}</Linkify>
                             </p>
                         </div>
                         <div className="post-buttons">

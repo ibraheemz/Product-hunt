@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Product from './index'
 import { useState, useEffect } from 'react'
-import axios from '../../lib/Api'
+import Api from '../../lib/Api'
 import React from 'react'
 import $ from 'jquery'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 const ProductList = ({ day, page, month }) => {
     const [posts, setPosts] = useState([])
@@ -22,26 +21,9 @@ const ProductList = ({ day, page, month }) => {
         'saturday',
     ]
 
-    //     const d = new Date()
-    //     const todayInMonth = d.getDate() - 1 // returns 26
-    //     const todayInWeek = d.getDay() //1
-    //     const dayIndex = todayInWeek - (todayInMonth - day)
-    //     if (day === todayInMonth) {
-    //         setDayName(weekday[todayInWeek])
-    //     } else if (dayIndex >= -7 && dayIndex <= -1) {
-    //         setDayName(weekday[dayIndex + 7])
-    //     } else if (dayIndex >= -14 && dayIndex <= -8) {
-    //         setDayName(weekday[dayIndex + 14])
-    //     } else if (!day) {
-    //         console.log("didn't get day")
-    //     } else {
-    //         console.log("couldn't name the day")
-    //     }
-    // }
     const abortCont = new AbortController()
     const getPosts = () => {
-        // axios(`/v1/posts?page=${page}&per_page=30`)
-        axios(`/v1/posts?day=2021-${month}-${day}`, {
+        Api(`/v1/posts?day=2021-${month}-${day}`, {
             signal: abortCont.signal,
         })
             .then(function (response) {
@@ -65,10 +47,8 @@ const ProductList = ({ day, page, month }) => {
         setLoading(false)
     }, [posts])
     $(function () {
-        // $('.today-product').slice(0, 12).show()
         $('#loadMore').on('click', function (e) {
             e.preventDefault()
-            // $('.today-product:hidden').slice(0, 10).show()
             $('.today-product:hidden').show()
             $('#loadMore').hide()
         })

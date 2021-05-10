@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
-// import axios from '../../../../lib/Api'
-import algoliasearch from 'algoliasearch/lite'
+import Api from '../../../../lib/Api'
+import ProductModal from '../../../product/ProductModal'
 import axios from 'axios'
 const SearchResults = ({ value }) => {
     const [results, setResults] = useState([''])
+    const [showModal, setShowModal] = useState(false)
+    const [postId, setPostId] = useState(0)
+    const [post, setPost] = useState({})
+
     let api = {
         url: `https://0h4smabbsg-dsn.algolia.net/1/indexes/Post_production?query=${value}`,
         method: 'GET',
@@ -21,6 +25,13 @@ const SearchResults = ({ value }) => {
             })
             .catch((err) => console.log(err))
     }, [value])
+    useEffect(() => {
+        let response = Api(`/v1/posts/${postId}`)
+            .then(function (response) {
+                setPost(response.data.post)
+            })
+            .catch((err) => console.log(err))
+    }, [postId])
 
     // only query string
     return (
@@ -33,7 +44,14 @@ const SearchResults = ({ value }) => {
                     results.length > 1 ? (
                         results.map((item) => {
                             return (
-                                <li className="result" key={item.id}>
+                                <li
+                                    className="result"
+                                    key={item.id}
+                                    onMouseDown={() => {
+                                        setShowModal(true)
+                                        setPostId(item.id)
+                                    }}
+                                >
                                     <div className="list-item-image-container">
                                         <img
                                             className="list-item-image"
@@ -60,6 +78,21 @@ const SearchResults = ({ value }) => {
                     <div></div>
                 )}
             </ul>
+            {showModal && (
+                <ProductModal
+                    productvotes={post.votes_count}
+                    id={post.id}
+                    productimg={post.thumbnail.image_url}
+                    productname={post.name}
+                    productdescription={post.tagline}
+                    categorylink={post.discussion_url}
+                    productlandingpage={post.redirect_url}
+                    productcategory={post.topics.map((item) => item.name)}
+                    commentsNum={post.comments_count}
+                    show={showModal}
+                    onHide={() => setShowModal(false)}
+                />
+            )}
         </div>
     )
 }
