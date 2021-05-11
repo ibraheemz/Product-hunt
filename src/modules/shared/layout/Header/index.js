@@ -3,7 +3,7 @@ import { ThreeDots, Search } from 'react-bootstrap-icons'
 import SearchResults from './SearchResults'
 import LoginModal from '../../../login&signup/LoginModal'
 import SignUpModal from '../../../login&signup/SignUpModal'
-import ProductHuntLogo from '../../../../assests/images/product-hunt-vertical-logo-red.png'
+import ProductHuntLogo from '../../../../assests/images/product-hunt-vertical-logo-red.svg'
 import $ from 'jquery'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
