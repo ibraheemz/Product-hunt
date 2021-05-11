@@ -3,7 +3,7 @@ import { ThreeDots, Search } from 'react-bootstrap-icons'
 import SearchResults from './SearchResults'
 import LoginModal from '../../../login&signup/LoginModal'
 import SignUpModal from '../../../login&signup/SignUpModal'
-import SiteLogo from '../../../../assests/images/gaming-logo.png'
+import ProductHuntLogo from '../../../../assests/images/product-hunt-vertical-logo-red.png'
 import $ from 'jquery'
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false)
@@ -22,21 +22,21 @@ const Header = () => {
         <div>
             <nav className="navbar navbar-expand-sm navbar-light bg-white shadow-sm fixed-top">
                 <div className="container">
-                    <img
-                        className="navbar-brand"
-                        src={SiteLogo}
-                        href="/"
-                        alt="app-logo"
-                        width="50"
-                        height="54"
-                    ></img>
+                    <a className="navbar-brand" href="/">
+                        <img
+                            src={ProductHuntLogo}
+                            alt="app-logo"
+                            width="50"
+                            height="54"
+                        ></img>
+                    </a>
 
                     <form className="d-flex input-group-sm col-4">
                         {$(window).width() <= 768 ? (
                             <div onClick={() => openSearch()}>
                                 {/* <Search /> */}
                                 <input
-                                    className="form-control me-2 nav-search-sm"
+                                    className="form-control me-2 no-border"
                                     type="search"
                                     placeholder={'Search Here ...'}
                                     aria-label="Search"
@@ -46,7 +46,7 @@ const Header = () => {
                             </div>
                         ) : (
                             <input
-                                className="form-control me-2 nav-search-sm input_width"
+                                className="form-control me-2 nav-search-sm no-border"
                                 type="search"
                                 placeholder={
                                     'Discover your new favorite thing...'
@@ -78,23 +78,32 @@ const Header = () => {
                                 <a
                                     className="nav-link active"
                                     aria-current="page"
-                                    href="#"
+                                    href="/discussion?ref=header_nav"
                                 >
                                     Discussion
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a
+                                    className="nav-link"
+                                    href="/deals?ref=header_nav"
+                                >
                                     Deals
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a
+                                    className="nav-link"
+                                    href="/jobs?ref=header_nav"
+                                >
                                     Jobs
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a
+                                    className="nav-link"
+                                    href="/ship?ref=header_nav"
+                                >
                                     Ship
                                 </a>
                             </li>
@@ -113,13 +122,22 @@ const Header = () => {
                                     className="dropdown-menu"
                                     aria-labelledby="dropdownMenuButton"
                                 >
-                                    <a className="dropdown-item" href="#">
+                                    <a
+                                        className="dropdown-item"
+                                        href="/advertise?ref=header_nav"
+                                    >
                                         Advertise
                                     </a>
-                                    <a className="dropdown-item" href="#">
+                                    <a
+                                        className="dropdown-item"
+                                        href="collections?ref=header_nav"
+                                    >
                                         Collections
                                     </a>
-                                    <a className="dropdown-item" href="#">
+                                    <a
+                                        className="dropdown-item"
+                                        href="mentors?ref=header_nav"
+                                    >
                                         Mentors
                                     </a>
                                 </div>
@@ -129,7 +147,8 @@ const Header = () => {
 
                     <div className="login-form d-flex align-items-center">
                         <button
-                            className="btn btn-outline-secondary m-2 btn-sm"
+                            id="grey-border"
+                            className="btn m-2 btn-sm"
                             onClick={() => setShowLogin(true)}
                         >
                             LOG IN

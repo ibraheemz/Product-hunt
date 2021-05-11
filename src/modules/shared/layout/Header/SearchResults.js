@@ -18,12 +18,13 @@ const SearchResults = ({ value }) => {
         },
     }
     useEffect(() => {
-        axios(api)
-            .then((response) => {
-                setResults(response.data.hits.slice(0, 5))
-                console.log(results)
-            })
-            .catch((err) => console.log(err))
+        value != '' &&
+            axios(api)
+                .then((response) => {
+                    setResults(response.data.hits.slice(0, 5))
+                    console.log(results)
+                })
+                .catch((err) => console.log(err))
     }, [value])
     useEffect(() => {
         let response = Api(`/v1/posts/${postId}`)

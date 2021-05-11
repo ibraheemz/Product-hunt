@@ -5,7 +5,7 @@ import Api from '../../lib/Api'
 import React from 'react'
 import $ from 'jquery'
 
-const ProductList = ({ day, page, month }) => {
+const ProductList = ({ month, day, page }) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [dayName, setDayName] = useState('Today')
@@ -22,12 +22,14 @@ const ProductList = ({ day, page, month }) => {
     ]
 
     const abortCont = new AbortController()
-    const getPosts = () => {
+    const getPosts = (month, day) => {
         Api(`/v1/posts?day=2021-${month}-${day}`, {
             signal: abortCont.signal,
         })
             .then(function (response) {
-                setPosts([...posts, ...response.data.posts])
+                response.data.posts.length
+                    ? setPosts([...posts, ...response.data.posts])
+                    : getPosts(month, day - 1)
             })
             .catch(function (error) {
                 if (error.name === 'AbortError') {
@@ -38,7 +40,7 @@ const ProductList = ({ day, page, month }) => {
             })
     }
     useEffect(() => {
-        getPosts()
+        getPosts(month, day)
         day === undefined && console.log('day is undefined', dayName)
         setDayName(weekday[new Date(`${month}/${day}/2021`).getDay()])
         return () => abortCont.abort()
@@ -108,12 +110,20 @@ const ProductList = ({ day, page, month }) => {
                                 </div>
                             )
                         )}
-                        <button
-                            id="loadMore"
-                            className="container-footer bg-white"
-                        >
-                            SHOW {posts.length - 12} MORE
-                        </button>
+                        {!posts ? (
+                            <div className="d-flex justify-content-center">
+                                <div className="spinner-border" role="status">
+                                    <span className="visually-hidden"></span>
+                                </div>
+                            </div>
+                        ) : (
+                            <button
+                                id="loadMore"
+                                className="container-footer bg-white"
+                            >
+                                SHOW {posts.length - 12} MORE
+                            </button>
+                        )}
                     </div>
                 )}
             </div>
