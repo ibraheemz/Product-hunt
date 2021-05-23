@@ -14,7 +14,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.0",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "he": "^1.2.0",
     "husky": "^5.0.9",
     "jquery": "^3.5.1",

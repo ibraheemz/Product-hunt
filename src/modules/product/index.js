@@ -31,8 +31,7 @@ const Product = ({
                             elementType === 'BUTTON' ||
                             elementType === 'svg' ||
                             elementType === 'path' ||
-                            elementType === 'A' ||
-                            elementType === 'P'
+                            elementType === 'A'
                         ) {
                             setShowProduct(false)
                         } else {

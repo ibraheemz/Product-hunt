@@ -35,7 +35,7 @@ const SearchResults = ({ value }) => {
     }, [postId])
 
     // only query string
-    return (
+    return value ? (
         <div className="search-result-container">
             <a href="#" className="results-section1">
                 PRODUCTS
@@ -95,6 +95,8 @@ const SearchResults = ({ value }) => {
                 />
             )}
         </div>
+    ) : (
+        <div></div>
     )
 }
 export default SearchResults

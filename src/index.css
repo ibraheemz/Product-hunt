@@ -307,6 +307,7 @@ iframe {
 .action-buttons {
     background-color: #f3f3f3;
     display: grid;
+    grid-auto-flow: column;
     grid-template-columns: repeat(5, 1fr);
 }
 .getit-button {
@@ -319,6 +320,25 @@ iframe {
     padding: 1em;
     width: 110px;
 }
+.dropdown-hidden {
+    display: none;
+    position: relative;
+    right: 70px;
+    top: 5px;
+    background-color: rgb(218, 218, 218);
+    width: 250px;
+    height: fit-content;
+}
+.dropdown-displayed {
+    display: block;
+}
+/* .getit-button:hover + .getit-button {
+    background-color: #b74424;
+    top: 20px;
+} */
+.getit-button > i {
+    color: gray;
+}
 .upvote-button {
     grid-column: span 3;
     background-color: #cc4d29;
@@ -326,8 +346,6 @@ iframe {
     border-radius: 3px;
     border: 1px solid #b74424;
     cursor: pointer;
-    padding: 1em;
-    width: 210px;
     height: 50px;
     text-align: center;
 }

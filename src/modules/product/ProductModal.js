@@ -19,6 +19,13 @@ const mediaUrls = (mediaArray) => {
     return urls
 }
 
+const showDropdown = () => {
+    document.getElementById('dropdown').classList.add('dropdown-displayed')
+}
+const hideDropdown = () => {
+    document.getElementById('dropdown').classList.remove('dropdown-displayed')
+}
+
 function ProductModal({
     productvotes,
     id,
@@ -35,6 +42,7 @@ function ProductModal({
     const [post, setPost] = useState({})
     const [loading, setLoading] = useState(true)
     const [comments, setComments] = useState([])
+    const [installLinks, setInstallLinks] = useState({})
     const alt = `Product ${id}`
     useEffect(() => {
         setLoading(true)
@@ -43,13 +51,27 @@ function ProductModal({
                 setPost(response.data.post)
                 setComments(response.data.post.comments)
                 setLoading(false)
+                setInstallLinks(response.data.post.install_links)
             })
             .catch((e) => {
                 setLoading(false)
                 console.log(e)
             })
     }, [id])
+    // let linkHeadline = ''
+    // const getText = () => {
+    //     for (let i = 0; i < installLinks.length; i++) {
+    //         installLinks[i].platform === null
+    //             ?
+    //         {
+    //             linkHeadline = 'Website'
 
+    //         }
+    //             : (linkHeadline = installLinks[i].platform)
+    //     }
+    // }
+
+    console.log(installLinks)
     return (
         <Modal
             productvotes={productvotes}
@@ -64,11 +86,12 @@ function ProductModal({
             productlandingpage={productlandingpage}
             show={show}
             onHide={onHide}
+            // installLinks={post.install_links}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             size="xl"
         >
-            {console.log('commets is here 4', comments)}
+            {/* {console.log(post.install_links[0])} */}
             <Modal.Body className="modal-wrapper">
                 <div className="modal-product-header">
                     <div className="modal-img-wrapper">
@@ -245,18 +268,57 @@ function ProductModal({
                             </div>
                         )}
                     </div>
-
                     <div className="modal-side-div">
                         <div className="action-buttons">
                             <button
+                                id="gitit-button-id"
                                 className="getit-button btn-sm"
                                 onClick={() => productlandingpage}
+                                onMouseOver={() => showDropdown()}
+                                onMouseOut={() => hideDropdown()}
                             >
                                 GET IT
+                                {installLinks.length > 1 && (
+                                    <i class="fas fa-chevron-down ml-3"></i>
+                                )}
                             </button>
                             <button className="upvote-button">
                                 UPVOTE {productvotes}
                             </button>
+                        </div>
+                        <div
+                            className="dropdown-hidden"
+                            id="dropdown"
+                            onMouseOver={() => showDropdown()}
+                            onMouseOut={() => hideDropdown()}
+                        >
+                            {installLinks.length > 1
+                                ? installLinks.map((item) => (
+                                      <div>
+                                          <div>
+                                              <div className="dropdown-site-img">
+                                                  <img></img>
+                                              </div>
+                                              <div>
+                                                  <a
+                                                      href={item.redirect_url}
+                                                      className="dropdown-website-headline"
+                                                  >
+                                                      {item.platform === null
+                                                          ? 'Website'
+                                                          : item.platform}
+                                                  </a>
+                                                  <p className="dropdown-website-subtext">
+                                                      {item.website_name}
+                                                  </p>
+                                              </div>
+                                              <div>
+                                                  <i class="fas fa-chevron-right"></i>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  ))
+                                : console.log('istallLinks not here')}
                         </div>
                         <div className="rounded-images"></div>
                     </div>
