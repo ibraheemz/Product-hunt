@@ -31,7 +31,8 @@ const Product = ({
                             elementType === 'BUTTON' ||
                             elementType === 'svg' ||
                             elementType === 'path' ||
-                            elementType === 'A'
+                            elementType === 'A' ||
+                            $(e.target).hasClass('voteP')
                         ) {
                             setShowProduct(false)
                         } else {
@@ -75,7 +76,7 @@ const Product = ({
                             }}
                         >
                             <i className="fas fa-caret-up mr-2 ml-2"></i>
-                            <p>{currentProductVotes}</p>
+                            <p className="voteP">{currentProductVotes}</p>
                         </button>
                     </div>
                 </div>

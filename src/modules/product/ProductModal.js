@@ -58,18 +58,10 @@ function ProductModal({
                 console.log(e)
             })
     }, [id])
-    // let linkHeadline = ''
-    // const getText = () => {
-    //     for (let i = 0; i < installLinks.length; i++) {
-    //         installLinks[i].platform === null
-    //             ?
-    //         {
-    //             linkHeadline = 'Website'
-
-    //         }
-    //             : (linkHeadline = installLinks[i].platform)
-    //     }
-    // }
+    const visitPage = () => {
+        window.location = post.redirect_url
+        console.log(post.redirect_url)
+    }
 
     console.log(installLinks)
     return (
@@ -86,12 +78,10 @@ function ProductModal({
             productlandingpage={productlandingpage}
             show={show}
             onHide={onHide}
-            // installLinks={post.install_links}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             size="xl"
         >
-            {/* {console.log(post.install_links[0])} */}
             <Modal.Body className="modal-wrapper">
                 <div className="modal-product-header">
                     <div className="modal-img-wrapper">
@@ -273,7 +263,9 @@ function ProductModal({
                             <button
                                 id="gitit-button-id"
                                 className="getit-button btn-sm"
-                                onClick={() => productlandingpage}
+                                onClick={() =>
+                                    installLinks.length === 1 && visitPage()
+                                }
                                 onMouseOver={() => showDropdown()}
                                 onMouseOut={() => hideDropdown()}
                             >
@@ -294,29 +286,41 @@ function ProductModal({
                         >
                             {installLinks.length > 1
                                 ? installLinks.map((item) => (
-                                      <div>
-                                          <div>
-                                              <div className="dropdown-site-img">
-                                                  <img></img>
-                                              </div>
-                                              <div>
-                                                  <a
-                                                      href={item.redirect_url}
-                                                      className="dropdown-website-headline"
-                                                  >
-                                                      {item.platform === null
-                                                          ? 'Website'
-                                                          : item.platform}
-                                                  </a>
-                                                  <p className="dropdown-website-subtext">
-                                                      {item.website_name}
-                                                  </p>
-                                              </div>
-                                              <div>
-                                                  <i class="fas fa-chevron-right"></i>
-                                              </div>
+                                      <a
+                                          className="dropdown-container"
+                                          href={item.redirect_url}
+                                      >
+                                          <div className="dropdown-site-placeholder">
+                                              {item.platform === null ? (
+                                                  <i class="fas fa-compass fa-2x  ml-2"></i>
+                                              ) : item.platform ===
+                                                'android' ? (
+                                                  <i class="fab fa-android fa-2x  ml-2"></i>
+                                              ) : item.platform === 'ios' ? (
+                                                  <i class="fab fa-apple fa-2x  ml-2"></i>
+                                              ) : item.platform === 'chrome' ? (
+                                                  <i class="fab fa-chrome fa-2x  ml-2"></i>
+                                              ) : (
+                                                  ''
+                                              )}
                                           </div>
-                                      </div>
+                                          <div className="dropdown-desc">
+                                              <a
+                                                  href={item.redirect_url}
+                                                  className="dropdown-website-headline"
+                                              >
+                                                  {item.platform === null
+                                                      ? 'Website'
+                                                      : item.platform}
+                                              </a>
+                                              <p className="dropdown-website-subtext">
+                                                  {item.website_name}
+                                              </p>
+                                          </div>
+                                          <div className="dropdown-arrow">
+                                              <i class="fas fa-chevron-right fa-2x ml-3"></i>
+                                          </div>
+                                      </a>
                                   ))
                                 : console.log('istallLinks not here')}
                         </div>

@@ -1,6 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ChildComments from './ChildComments'
 import { useState } from 'react'
+import parse from 'html-react-parser'
+import Linkify from 'react-linkify'
+
 const moment = require('moment')
 
 const Comments = (comments, id) => {
@@ -40,7 +43,8 @@ const Comments = (comments, id) => {
                     )}
                     <div className="user-comment">
                         <div className="user-comment-body">
-                            {'\n'.concat(comments.comments.body)}
+                            <br></br>
+                            <Linkify>{parse(comments.comments.body)}</Linkify>
                         </div>
                         <div className="post-buttons">
                             <button
