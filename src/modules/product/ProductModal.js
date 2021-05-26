@@ -71,7 +71,6 @@ function ProductModal({
             productimg={productimg}
             productname={productname}
             productdescription={productdescription}
-            categorylink={categorylink}
             productcategory={productcategory}
             commentsnum={commentsnum}
             productphotos={mediaUrls(post.media)}
@@ -101,7 +100,10 @@ function ProductModal({
                                 return (
                                     <a
                                         id={index}
-                                        href={categorylink}
+                                        href={`https://www.producthunt.com/topics/${item
+                                            .toLowerCase()
+                                            .split(' ')
+                                            .join('-')}`}
                                         className="modal-cat-button"
                                     >
                                         {item}

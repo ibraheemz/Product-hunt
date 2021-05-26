@@ -57,7 +57,13 @@ const Product = ({
                                 <Chat />
                                 {commentsnum}
                             </button>
-                            <a className="category-link" href={categorylink}>
+                            <a
+                                className="category-link"
+                                href={`https://www.producthunt.com/topics/${productcategory[0]
+                                    .toLowerCase()
+                                    .split(' ')
+                                    .join('-')}`}
+                            >
                                 {productcategory[0]}
                             </a>
                         </div>
