@@ -3,12 +3,17 @@ import $ from 'jquery'
 import parse from 'html-react-parser'
 const moment = require('moment')
 const ChildComments = (item) => {
+    let body = item.item.body
     const [votes, setVotes] = useState(item.item.votes)
     const [voteOff, setVoteOff] = useState(false)
-    const extracttag = () =>
-        /^\100\w*/g.exec(item.item.body) !== null &&
-        /^\100\w*/g.exec(item.item.body)[0]
-
+    const extracttag = () => item.item.body.match(/\B@[a-z0-9_-]+/gi)
+    console.log(extracttag())
+    if (extracttag() !== null) {
+        for (let i = 0; i <= extracttag().length; i++) {
+            body = body.replace(extracttag()[i], '')
+        }
+    }
+    console.log(body)
     return (
         <div className="child-comments-wrapper">
             <div className="user-pic">
@@ -34,14 +39,15 @@ const ChildComments = (item) => {
                     <div className="user-comment">
                         <div className="user-child-comment-body" id="test">
                             <p id="child-comment-id">
-                                {/^\100\w*/g.exec(item.item.body) !== null && (
-                                    <a
-                                        href={`https://www.producthunt.com/${extracttag()}`}
-                                    >
-                                        {extracttag()}
-                                    </a>
-                                )}
-                                {item.item.body.replace(extracttag(), '')}
+                                {/^\100\w*/g.exec(item.item.body) !== null &&
+                                    extracttag().map((item) => (
+                                        <a
+                                            href={`https://www.producthunt.com/${item}`}
+                                        >
+                                            {item + ' '}
+                                        </a>
+                                    ))}
+                                {body}
                             </p>
                         </div>
                         <div className="post-buttons">
