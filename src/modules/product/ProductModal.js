@@ -294,16 +294,16 @@ function ProductModal({
                                       >
                                           <div className="dropdown-site-placeholder">
                                               {item.platform === null ? (
-                                                  <i class="fas fa-compass fa-2x  ml-2"></i>
+                                                  <i class="fas fa-compass fa-2x  ml-3"></i>
                                               ) : item.platform ===
                                                 'android' ? (
-                                                  <i class="fab fa-android fa-2x  ml-2"></i>
+                                                  <i class="fab fa-android fa-2x  ml-3"></i>
                                               ) : item.platform === 'ios' ? (
-                                                  <i class="fab fa-apple fa-2x  ml-2"></i>
+                                                  <i class="fab fa-apple fa-2x  ml-3"></i>
                                               ) : item.platform === 'chrome' ? (
-                                                  <i class="fab fa-chrome fa-2x  ml-2"></i>
+                                                  <i class="fab fa-chrome fa-2x  ml-3"></i>
                                               ) : (
-                                                  ''
+                                                  <i class="fas fa-ellipsis-h fa-2x  ml-3"></i>
                                               )}
                                           </div>
                                           <div className="dropdown-desc">

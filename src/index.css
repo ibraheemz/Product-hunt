@@ -331,6 +331,8 @@ iframe {
     box-shadow: 0px 1px 5px 0px rgb(173, 173, 173),
         0px 1px 5px 0px rgb(173, 173, 173);
     border-radius: 5px;
+    padding: 0.5em 1em 0.5em 1em;
+    width: fit-content;
 }
 .dropdown-displayed {
     display: grid;
@@ -341,6 +343,7 @@ iframe {
     border: 1px solid rgb(231, 230, 230);
     border-radius: 4px;
     margin: 0.5em;
+    width: 18em;
 }
 .dropdown-container:hover {
     text-decoration: none;
@@ -365,6 +368,9 @@ iframe {
     grid-column: span 1;
     position: relative;
     align-self: center;
+}
+.dropdown-website-subtext {
+    /* word-wrap: break-word; */
 }
 .dropdown-desc {
     grid-column: span 3;

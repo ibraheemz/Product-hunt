@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ProductModal from './ProductModal'
-import { ArrowUpCircleFill, Chat } from 'react-bootstrap-icons'
+import { Chat } from 'react-bootstrap-icons'
 import $ from 'jquery'
 
 const Product = ({
@@ -57,15 +57,17 @@ const Product = ({
                                 <Chat />
                                 {commentsnum}
                             </button>
-                            <a
-                                className="category-link"
-                                href={`https://www.producthunt.com/topics/${productcategory[0]
-                                    .toLowerCase()
-                                    .split(' ')
-                                    .join('-')}`}
-                            >
-                                {productcategory[0]}
-                            </a>
+                            {productcategory[0] && (
+                                <a
+                                    className="category-link"
+                                    href={`https://www.producthunt.com/topics/${productcategory[0]
+                                        .toLowerCase()
+                                        .split(' ')
+                                        .join('-')}`}
+                                >
+                                    {productcategory[0]}
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="vote-button-warrper">
