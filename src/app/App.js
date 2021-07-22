@@ -4,16 +4,14 @@ import SideDive from '../modules/shared/layout/SideDiv'
 import { useState, useEffect } from 'react'
 import $ from 'jquery'
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
 const App = () => {
     const d = new Date()
     const [day, setDay] = useState([d.getDate()])
     const [month, setMonth] = useState(d.getMonth() + 1)
     const [page, setPage] = useState([1])
-    const [dateAndPage, setDateAndPage] = useState([
-        { day: day[0], page: page[0], month: month },
-    ])
-
-    // let scrolled = Math.round(window.scrollY)
+    const [dateAndPage, setDateAndPage] = useState([])
 
     window.onscroll = function (ev) {
         if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {

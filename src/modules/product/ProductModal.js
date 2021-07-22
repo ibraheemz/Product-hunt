@@ -5,6 +5,7 @@ import Carousel from './Carousel'
 import Api from '../../lib/Api'
 import Comments from './Comments'
 import placeholderImg from '../../assests/images/guest-user-avatar.webp'
+
 const mediaUrls = (mediaArray) => {
     if (!mediaArray) return
 

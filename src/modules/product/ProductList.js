@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Api from '../../lib/Api'
 import React from 'react'
 import $ from 'jquery'
-
+import { Link, BrowserRouter as Router } from 'react-router-dom'
 const ProductList = ({ month, day, page }) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -30,6 +30,7 @@ const ProductList = ({ month, day, page }) => {
                 response.data.posts.length
                     ? setPosts([...posts, ...response.data.posts])
                     : getPosts(month, day - 1)
+                setLoading(false)
             })
             .catch(function (error) {
                 if (error.name === 'AbortError') {
@@ -45,9 +46,7 @@ const ProductList = ({ month, day, page }) => {
         setDayName(weekday[new Date(`${month}/${day}/2021`).getDay()])
         return () => abortCont.abort()
     }, [day])
-    useEffect(() => {
-        setLoading(false)
-    }, [posts])
+
     $(function () {
         $('#loadMore').on('click', function (e) {
             e.preventDefault()
@@ -58,9 +57,6 @@ const ProductList = ({ month, day, page }) => {
     return (
         <div className="container-fluid main-div">
             <div className="main-div-margin">
-                <div className="time-span">
-                    <span className="main-div ml-0 ">{dayName}</span>
-                </div>
                 {loading ? (
                     <div className="d-flex justify-content-center">
                         <div className="spinner-border" role="status">
@@ -69,6 +65,9 @@ const ProductList = ({ month, day, page }) => {
                     </div>
                 ) : (
                     <div>
+                        <div className="time-span">
+                            <span className="main-div ml-0 ">{dayName}</span>
+                        </div>
                         {posts.map((item, index) =>
                             index <= 12 ? (
                                 <div
@@ -87,7 +86,11 @@ const ProductList = ({ month, day, page }) => {
                                         )}
                                         categorylink={item.discussion_url}
                                         id={item.id}
-                                    />
+                                    >
+                                        {/* <Link
+                                                to={`/Posts/${item.name}`}
+                                            ></Link> */}
+                                    </Product>
                                 </div>
                             ) : (
                                 <div
@@ -106,24 +109,20 @@ const ProductList = ({ month, day, page }) => {
                                         )}
                                         categorylink={item.discussion_url}
                                         id={item.id}
-                                    />
+                                    >
+                                        {/* <Link
+                                                to={`/Posts/${item.name}`}
+                                            ></Link> */}
+                                    </Product>
                                 </div>
                             )
                         )}
-                        {!posts ? (
-                            <div className="d-flex justify-content-center">
-                                <div className="spinner-border" role="status">
-                                    <span className="visually-hidden"></span>
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                id="loadMore"
-                                className="container-footer bg-white"
-                            >
-                                SHOW {posts.length - 12} MORE
-                            </button>
-                        )}
+                        <button
+                            id="loadMore"
+                            className="container-footer bg-white"
+                        >
+                            SHOW {posts.length - 12} MORE
+                        </button>
                     </div>
                 )}
             </div>

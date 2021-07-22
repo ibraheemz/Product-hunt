@@ -1,64 +1,67 @@
 {
-  "name": "product-hunt",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@popperjs/core": "^2.7.1",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.1",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "algoliasearch": "^4.9.1",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "bootstrap-icons": "^1.4.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "he": "^1.2.0",
-    "html-react-parser": "^1.2.6",
-    "HTMLString": "^1.0.7",
-    "husky": "^5.0.9",
-    "interweave": "^12.7.2",
-    "jquery": "^3.5.1",
-    "moment-strftime": "^0.5.0",
-    "pizzly-js": "^0.2.8",
-    "popper.js": "^1.5.2",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0",
-    "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
-    "react-bootstrap-icons": "^1.3.0",
-    "react-bootstrap-modal": "^4.2.0",
-    "react-dom": "^17.0.1",
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-linkify": "^1.0.0-alpha",
-    "react-scripts": "4.0.2",
-    "web-vitals": "^1.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "product-hunt",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@popperjs/core": "^2.7.1",
+        "@testing-library/jest-dom": "^5.11.9",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.7.1",
+        "@types/react": "^17.0.2",
+        "@types/react-dom": "^17.0.1",
+        "HTMLString": "^1.0.7",
+        "algoliasearch": "^4.9.1",
+        "axios": "^0.21.1",
+        "bootstrap": "^4.6.0",
+        "bootstrap-icons": "^1.4.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "he": "^1.2.0",
+        "history": "^5.0.0",
+        "html-react-parser": "^1.2.6",
+        "husky": "^5.0.9",
+        "interweave": "^12.7.2",
+        "jquery": "^3.5.1",
+        "moment-strftime": "^0.5.0",
+        "pizzly-js": "^0.2.8",
+        "popper.js": "^1.5.2",
+        "prettier": "^2.2.1",
+        "pretty-quick": "^3.1.0",
+        "react": "^17.0.1",
+        "react-bootstrap": "^1.5.0",
+        "react-bootstrap-icons": "^1.3.0",
+        "react-bootstrap-modal": "^4.2.0",
+        "react-dom": "^17.0.1",
+        "react-infinite-scroll-component": "^6.1.0",
+        "react-linkify": "^1.0.0-alpha",
+        "react-router": "^5.2.0",
+        "react-router-dom": "^6.0.0-beta.0",
+        "react-scripts": "4.0.2",
+        "web-vitals": "^1.1.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "format": "prettier --write \"src/**/*.{js,jsx}\"",
+        "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
